@@ -1,0 +1,7 @@
+.btn_list{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  min-width: 600px;
+  margin: auto;
+}

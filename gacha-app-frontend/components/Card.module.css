@@ -1,0 +1,56 @@
+.result_card {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  max-width: 80vw;
+  max-height: 80vh;
+  max-height: 500px;
+  margin: 20px auto;
+  overflow-y: scroll;
+}
+
+.margin{
+  margin: auto auto auto 0;
+}
+
+.kind_card {
+  width: 30vw;
+  height: 30vw;
+  max-width: 200px;
+  max-height: 200px;
+  border: 3px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+}
+
+.kind_card:hover {
+  cursor: pointer;
+
+}
+
+.shadow {
+  margin-top: 50px;
+  height: 40px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  /* filter: blur(3px); */
+}
