@@ -45,13 +45,13 @@ public class GachaService {
     for (int i = 0; i < kindNum; i++) {
       num = generator.nextInt(100);
       if (num < s) {
-        result[i] = "s";
+        result[i] = "S";
       } else if (num < aProbality) {
-        result[i] = "a";
+        result[i] = "A";
       } else if (num < bProbality) {
-        result[i] = "b";
+        result[i] = "B";
       } else {
-        result[i] = "c";
+        result[i] = "C";
       }
     }
 
@@ -65,10 +65,10 @@ public class GachaService {
     String[] result = pullGacha(kindNum);
 
     int[] count = { 0, 0, 0, 0 };
-    count[0] = (int) Arrays.stream(result).filter(f -> f.equals("s")).count();
-    count[1] = (int) Arrays.stream(result).filter(f -> f.equals("a")).count();
-    count[2] = (int) Arrays.stream(result).filter(f -> f.equals("b")).count();
-    count[3] = (int) Arrays.stream(result).filter(f -> f.equals("c")).count();
+    count[0] = (int) Arrays.stream(result).filter(f -> f.equals("S")).count();
+    count[1] = (int) Arrays.stream(result).filter(f -> f.equals("A")).count();
+    count[2] = (int) Arrays.stream(result).filter(f -> f.equals("B")).count();
+    count[3] = (int) Arrays.stream(result).filter(f -> f.equals("C")).count();
 
     return count;
 

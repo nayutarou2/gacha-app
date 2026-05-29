@@ -16,7 +16,7 @@ public interface GachaMenuMapper {
   List<GachaMenu> selectAllKinds();
 
   // ガチャの種類を取得
-  @Select("SELECT * FROM gacha_menus WHERE kindsNum = #{kindsNum}")
+  @Select("SELECT * FROM gacha_menus WHERE kinds_num = #{kindsNum}")
   Long selectById(int kindsNum);
 
 }

@@ -14,8 +14,9 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addMapping("/api/gacha/**")
         .allowedOrigins("http://localhost:3000")
         .allowedMethods("GET", "POST")
-        .allowedHeaders("Content-Type")
-        .allowCredentials(true)
+        // .allowedHeaders("Content-Type")
+        .allowedHeaders("*")
+        // .allowCredentials(true)
         .maxAge(3600);
   }
 
