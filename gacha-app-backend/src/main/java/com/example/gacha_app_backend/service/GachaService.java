@@ -7,6 +7,7 @@ import java.util.random.RandomGenerator;
 import java.util.random.RandomGeneratorFactory;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.gacha_app_backend.dto.GachaDto;
 import com.example.gacha_app_backend.entity.GachaMenu;
@@ -33,6 +34,7 @@ public class GachaService {
   }
 
   // ガチャを指定された回数回すロジック
+  @Transactional
   public String[] pullGacha(int kindNum) {
 
     String[] result = new String[kindNum];
@@ -60,6 +62,7 @@ public class GachaService {
   }
 
   // 配列の中身を調べるもの
+  @Transactional
   public int[] resultCount(int kindNum) {
 
     String[] result = pullGacha(kindNum);
@@ -75,6 +78,7 @@ public class GachaService {
   }
 
   // 保存ロジック
+  @Transactional
   public GachaResult insert(int kindNum) {
 
     if (gachaMenuRepository.selectById(kindNum) == null) {
@@ -93,13 +97,20 @@ public class GachaService {
     gachaResult.setGachaMenuId(gachaMenuRepository.selectById(kindNum));
     gachaResult.setUserId((long) 1);
 
-    gachaResultRepository.insertResult(gachaResult);
+
+    try {
+      gachaResultRepository.insertResult(gachaResult);
+    } catch (Exception e) {
+      throw new Error("登録できませんでした");
+    }
+
 
     return gachaResult;
   }
 
   // ガチャを引いた結果とその詳細結果を返す
-  public GachaDto responseBody(String[] gachaResult,int[] gachaResultDetial ){
+  @Transactional
+  public GachaDto responseBody(String[] gachaResult, int[] gachaResultDetial) {
 
     GachaDto gachaDto = new GachaDto();
     gachaDto.setGachaResult(gachaResult);
@@ -109,17 +120,20 @@ public class GachaService {
   }
 
   // 指定したユーザの総回数全取得
+  @Transactional
   public Long selectAllGachaResult(Long userId) {
     return gachaResultRepository.selectAllGachaResult(userId);
   }
 
-   // 種類全取得
-  public List<GachaMenu> selectAllKinds(){
+  // 種類全取得
+  @Transactional
+  public List<GachaMenu> selectAllKinds() {
     return gachaMenuRepository.selectAllKinds();
-  }  
+  }
 
-  public Long selectById(int kindsNum){
-    return gachaMenuRepository.selectById(kindsNum);    
+  @Transactional
+  public Long selectById(int kindsNum) {
+    return gachaMenuRepository.selectById(kindsNum);
   }
 
 }
