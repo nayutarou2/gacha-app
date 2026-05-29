@@ -1,0 +1,14 @@
+.pull {
+  text-align: center;
+  margin: 50px auto 30px auto;
+  width: 200px;
+  font-size: larger;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.pull:hover {
+  background-color: rgb(241, 237, 237);
+  cursor: pointer;
+}
