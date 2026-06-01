@@ -13,8 +13,8 @@ export default function ClickBtn(props:TextProps) {
   const router = useRouter();
 
   return (
-    <div className={styles.pull} onClick={() => router.push(props.url)}>
+    <button className={styles.pull} onClick={() => router.push(props.url)}>
       {props.text}
-    </div>
+    </button>
   );
 }
