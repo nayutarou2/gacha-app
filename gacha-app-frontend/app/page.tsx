@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Header />
       {/* ガチャページにゴー */}
-      <ClickBtn text='ガチャを引く' url='/gacha' />
+      <ClickBtn text="ガチャを引く" url="/gacha" />
       {/* リザルト表示 */}
       <ResultAllCount />
     </>

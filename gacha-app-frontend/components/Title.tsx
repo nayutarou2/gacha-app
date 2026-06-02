@@ -1,12 +1,7 @@
-
-interface TextProps{
-  text:string;  
+interface TextProps {
+  text: string;
 }
 
-export default function Title(props:TextProps) {
-
-  return(
-    <h2>{props.text}</h2>
-  )
-
+export default function Title(props: TextProps) {
+  return <h2>{props.text}</h2>;
 }

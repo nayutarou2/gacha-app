@@ -1,8 +1,9 @@
 export interface ResultData {
   // id: number
   // result: string;
-  gachaResult:string[];
-  gachaResultDetail:number[];
+  gachaResult: string[];
+  gachaResultDetail: number[];
+  id: number;
 }
 
 // 👇 新しく追加する：APIから返ってくる「大外」のデータの型

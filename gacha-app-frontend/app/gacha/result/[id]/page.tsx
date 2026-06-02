@@ -9,7 +9,6 @@ import ResultCard from '@/components/ResultCard';
 // import ResultDetail from '@/components/ResultDetail';
 
 export default async function Result({ params }: { params: Promise<{ id: string }> }) {
-
   // 1. ここで await して中身を取り出す（これが重要！）
   const resolvedParams = await params;
   const resultId = resolvedParams.id;
@@ -24,7 +23,7 @@ export default async function Result({ params }: { params: Promise<{ id: string 
     return <div>結果が見つかりませんでした。</div>;
   }
 
-  const result = [response.scount, response.acount, response.bcount, response.ccount]
+  const result = [response.scount, response.acount, response.bcount, response.ccount];
 
   return (
     <>

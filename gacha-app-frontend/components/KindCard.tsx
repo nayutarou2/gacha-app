@@ -16,8 +16,8 @@ export default function KindsCard(props: KindProps) {
     try {
       const response = await pullGacha(kindNum);
       console.log('レスポンス:', response);
-      console.log("result?",JSON.stringify(response.gachaResult));
-      localStorage.setItem("gachaResult",JSON.stringify(response.gachaResult));
+      console.log('result?', JSON.stringify(response.gachaResult));
+      localStorage.setItem('gachaResult', JSON.stringify(response.gachaResult));
       router.push(`/gacha/result/${response.id}`);
     } catch (error) {
       console.error('通信失敗 : ', error);
