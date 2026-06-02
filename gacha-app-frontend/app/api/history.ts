@@ -21,3 +21,18 @@ export const getAllResult = async () => {
     }
   }
 };
+
+export const selectByResultId = async (id: number) => {
+  try {
+    const response = await api.get(`/result/${id}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError<ApiError>(error)) {
+      console.error(error.response?.data.message);
+      console.error(error.response?.status);
+    } else {
+      throw error;
+    }
+  }
+};
