@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.gacha_app_backend.dto.GachaDto;
 import com.example.gacha_app_backend.entity.GachaMenu;
+import com.example.gacha_app_backend.entity.GachaResult;
 import com.example.gacha_app_backend.service.GachaService;
-
 
 @Controller
 @RestController
@@ -41,17 +42,20 @@ public class GachaController {
   @PostMapping("/pull")
   // 何回引くかをユーザから取得
   // 配列でそれぞれの値に対する数を格納 例) [3(S),2(A),4(B),1(C)]
-  public ResponseEntity<GachaDto> pullGacha(@RequestBody Map<String,Integer> request) {
+  public ResponseEntity<GachaDto> pullGacha(@RequestBody Map<String, Integer> request) {
     // int kindNum = kindNums[0];
     int kindNum = request.get("kindNum");
     // ガチャを回した結果を返す
     String[] gachaResult = gachaService.pullGacha(kindNum);
     // ガチャの詳細結果
-    int[] gachaResultDetial = gachaService.resultCount(kindNum);
+    int[] gachaResultDetial = gachaService.resultCount(gachaResult);
     // ガチャの結果を登録する
-    gachaService.insert(kindNum);
+    GachaResult result = gachaService.insert(kindNum,gachaResultDetial);
+    // 格納したidを取得
+    Long id = result.getId();
+
     // 二つのものを格納して返す
-    return ResponseEntity.ok(gachaService.responseBody(gachaResult, gachaResultDetial));
+    return ResponseEntity.ok(gachaService.responseBody(gachaResult, gachaResultDetial,id));
 
   }
 
@@ -61,6 +65,17 @@ public class GachaController {
   public ResponseEntity<Long> getAllResult() {
     Long resposeBody = gachaService.selectAllGachaResult((long) 1);
     return ResponseEntity.ok(resposeBody);
+  }
+
+  // 指定したidのガチャのデータを取得
+  @GetMapping("/result/{id}")
+  public ResponseEntity<GachaResult> viewGachaResult(@PathVariable("id") Long id) {
+
+    System.out.println("id" + id);
+
+    GachaResult gachaResult = gachaService.selectByResultId(id);
+
+    return ResponseEntity.ok(gachaResult);
   }
 
 }
