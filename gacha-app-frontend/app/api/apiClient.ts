@@ -1,8 +1,9 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
 
+
 const api: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8080/api/gacha',
+  baseURL:process.env.NEXT_PUBLIC_BASE_URL,
   // timeout: 5000,
 });
 
