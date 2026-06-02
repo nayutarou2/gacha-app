@@ -7,5 +7,6 @@ public class GachaDto {
 
   private String[] gachaResult;
   private int[] gachaResultDetail;
+  private Long id;
 
 }

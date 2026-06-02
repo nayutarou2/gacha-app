@@ -24,4 +24,14 @@ public class GachaResultRepository {
     return gachaResultMapper.selectAllGachaResult(userId);
   }
 
+  // 指定したidのガチャのデータを取得
+  public GachaResult selectById(Long id) {
+
+    if (id == null) {
+      throw new Error("指定されたidが見つかりませんでした。");
+    }
+
+    return gachaResultMapper.selectById(id);
+  }
+
 }

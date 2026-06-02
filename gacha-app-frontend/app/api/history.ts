@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import api from './apiClient';
 
 type ApiError = {
@@ -16,6 +16,23 @@ export const getAllResult = async () => {
       // error.response?.data is typed as ApiError
       console.error(error.response?.data.message);
       console.error(error.response?.status);
+      throw error;
+    } else {
+      throw error;
+    }
+  }
+};
+
+export const selectByResultId = async (id: number) => {
+  try {
+    const response = await api.get(`/result/${id}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError<ApiError>(error)) {
+      console.error(error.response?.data.message);
+      console.error(error.response?.status);
+      throw error;
     } else {
       throw error;
     }

@@ -1,0 +1,46 @@
+.box {
+  width: 700px;
+  height: auto;
+  min-height: 120px;
+  max-height: 600px;
+  margin: auto;
+  border: 3px solid rgb(175, 173, 173);
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.result_card {
+  font-size: 20px;
+}
+
+.undefined {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 50px;
+}
+
+.item {
+  width: 10vw;
+  height: 10vw;
+  min-width: 50px;
+  max-height: 50px;
+  max-width: 100px;
+  max-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(226, 226, 226);
+  box-shadow: 3px 3px 3px 3px rgba(128, 128, 128, 0.5);
+  margin: 10px;
+}
+
+.center {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

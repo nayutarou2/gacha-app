@@ -1,4 +1,4 @@
 export interface KindsData {
-  id:number;
+  id: number;
   kindsNum: number;
 }

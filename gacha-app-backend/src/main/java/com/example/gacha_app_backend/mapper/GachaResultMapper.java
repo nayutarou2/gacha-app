@@ -39,4 +39,8 @@ public interface GachaResultMapper {
       """)
   Long selectAllGachaResult(Long userId);
 
+  // id指定でガチャを取得
+  @Select("SELECT * FROM gacha_results WHERE id = #{id}")
+  GachaResult selectById(Long id);
+
 }
