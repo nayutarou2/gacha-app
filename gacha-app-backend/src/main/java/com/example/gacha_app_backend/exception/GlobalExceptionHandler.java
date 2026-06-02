@@ -6,23 +6,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.example.gacha_app_backend.dto.ErrorResponseDto;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
   @ExceptionHandler({ ResourceNotFoundException.class, NotFoundException.class })
-  public ResponseEntity<String> handleResourceNotFound(ResourceNotFoundException ex) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+  public ResponseEntity<ErrorResponseDto> handleResourceNotFound(ResourceNotFoundException ex) {
+    ErrorResponseDto error = new ErrorResponseDto(404, ex.getMessage());
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
   }
 
   @ExceptionHandler({ BadRequestException.class, BadRequestException.class })
-  public ResponseEntity<String> handleBadRequest(BadRequestException ex) {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+  public ResponseEntity<ErrorResponseDto> handleBadRequest(BadRequestException ex) {
+    ErrorResponseDto error = new ErrorResponseDto(400, ex.getMessage());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
   }
 
   // 3. その他、予期せぬエラー全てをキャッチ (500 Internal Server Error)
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleAllOtherExceptions(Exception ex) {
-    System.out.println("404,400以外のエラー" + ex);
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("システムエラーが発生しました。");
+  public ResponseEntity<ErrorResponseDto> handleAllOtherExceptions(Exception ex) {
+    log.error("予期せぬエラーが発生しました", ex);
+    ErrorResponseDto error = new ErrorResponseDto(500, "システムエラーが発生しました。");
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
   }
 }
