@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.example.gacha_app_backend.dto.ErrorResponseDto;
 
@@ -20,7 +21,7 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
   }
 
-  @ExceptionHandler({ BadRequestException.class, BadRequestException.class })
+  @ExceptionHandler({ BadRequestException.class, MethodArgumentTypeMismatchException.class })
   public ResponseEntity<ErrorResponseDto> handleBadRequest(BadRequestException ex) {
     ErrorResponseDto error = new ErrorResponseDto(400, ex.getMessage());
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
