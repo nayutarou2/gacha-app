@@ -48,14 +48,14 @@ public class GachaController {
     // ガチャを回した結果を返す
     String[] gachaResult = gachaService.pullGacha(kindNum);
     // ガチャの詳細結果
-    int[] gachaResultDetial = gachaService.resultCount(gachaResult);
+    int[] gachaResultDetail = gachaService.resultCount(gachaResult);
     // ガチャの結果を登録する
-    GachaResult result = gachaService.insert(kindNum,gachaResultDetial);
+    GachaResult result = gachaService.insert(kindNum,gachaResultDetail);
     // 格納したidを取得
     Long id = result.getId();
 
     // 二つのものを格納して返す
-    return ResponseEntity.ok(gachaService.responseBody(gachaResult, gachaResultDetial,id));
+    return ResponseEntity.ok(gachaService.responseBody(gachaResult, gachaResultDetail,id));
 
   }
 

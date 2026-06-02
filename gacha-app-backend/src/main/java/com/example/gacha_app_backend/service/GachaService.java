@@ -107,11 +107,11 @@ public class GachaService {
 
   // ガチャを引いた結果とその詳細結果を返す
   @Transactional
-  public GachaDto responseBody(String[] gachaResult, int[] gachaResultDetial,Long id) {
+  public GachaDto responseBody(String[] gachaResult, int[] gachaResultDetail,Long id) {
 
     GachaDto gachaDto = new GachaDto();
     gachaDto.setGachaResult(gachaResult);
-    gachaDto.setGachaResultDetail(gachaResultDetial);
+    gachaDto.setGachaResultDetail(gachaResultDetail);
     gachaDto.setId(id);
 
     return gachaDto;
