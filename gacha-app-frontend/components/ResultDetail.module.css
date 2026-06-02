@@ -1,6 +1,21 @@
-.result_count {
-  margin-top: 40px;
+.result_card {
+  width: 40px;
+  height: 40px;
   display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.results {
+  width: 80vw;
+  height: fit-content;
+  margin: 40px auto 30px auto;
+  display: flex;
+  align-items: center;
   justify-content: space-evenly;
   font-size: 24px;
 }
