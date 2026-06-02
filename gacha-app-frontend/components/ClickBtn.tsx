@@ -1,6 +1,5 @@
 'use client';
 
-import { url } from 'inspector';
 import styles from './ClicBtn.module.css';
 import { useRouter } from 'next/navigation';
 

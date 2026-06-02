@@ -1,10 +1,8 @@
-import Card from '@/components/KindCard';
 import styles from './result.module.css';
 import Title from '@/components/Title';
 import ClickBtn from '@/components/ClickBtn';
 import { selectByResultId } from '@/app/api/history';
 import ResultDetail from '@/components/ResultDetail';
-import { ResultData } from '@/app/interface/ResultData';
 import ResultCard from '@/components/ResultCard';
 // import ResultDetail from '@/components/ResultDetail';
 

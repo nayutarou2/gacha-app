@@ -1,6 +1,5 @@
 import Header from '@/components/Header';
 import ClickBtn from '@/components/ClickBtn';
-import ResultDetail from '@/components/ResultAllCount';
 import ResultAllCount from '@/components/ResultAllCount';
 
 export default function Home() {

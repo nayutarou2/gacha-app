@@ -1,7 +1,5 @@
-import Card from '@/components/KindCard';
 import Title from '@/components/Title';
 import styles from '@/components/ChooseKind.module.css';
-import { allKinds } from '@/app/api/kinds';
 import { KindsData } from '@/app/interface/KindsData';
 import KindsCard from '@/components/KindCard';
 
