@@ -4,11 +4,16 @@
 import ClickBtn from '@/components/ClickBtn';
 import { useEffect } from 'react';
 
-export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
   useEffect(() => {
     // ここでエラーをコンソールに出力してデバッグしやすくします
-    console.error("システムエラー:", error);
+    console.error('システムエラー:', error);
   }, [error]);
 
   return (

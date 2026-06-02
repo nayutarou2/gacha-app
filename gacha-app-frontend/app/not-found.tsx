@@ -1,7 +1,6 @@
-import ClickBtn from "@/components/ClickBtn";
+import ClickBtn from '@/components/ClickBtn';
 
 export default function NotFound() {
-
   return (
     <>
       <div style={{ textAlign: 'center', margin: '50px' }}>
@@ -11,5 +10,4 @@ export default function NotFound() {
       <ClickBtn text="ホーム画面に戻る" url="/" />
     </>
   );
-
 }

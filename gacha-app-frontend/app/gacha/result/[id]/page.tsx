@@ -5,6 +5,7 @@ import { selectByResultId } from '@/app/api/history';
 import ResultDetail from '@/components/ResultDetail';
 import ResultCard from '@/components/ResultCard';
 import { notFound } from 'next/navigation';
+import axios from 'axios';
 
 export default async function Result({ params }: { params: Promise<{ id: string }> }) {
   // 1. ここで await して中身を取り出す（これが重要！）
@@ -17,38 +18,40 @@ export default async function Result({ params }: { params: Promise<{ id: string 
     notFound();
   }
 
+  let response;
+
   try {
     // バックエンドに問い合わせる
-    const response = await selectByResultId(id);
+    response = await selectByResultId(id);
 
     // 3. もしデータがなければエラー表示（または404ページへリダイレクト）
     if (!response) {
       notFound();
     }
-
-    const result = [response.scount, response.acount, response.bcount, response.ccount];
-
-    return (
-      <>
-        <Title text="結果" />
-        {/* 結果画面 S A B C を出す */}
-
-        <ResultCard />
-
-        {/* ResultDetail */}
-        <ResultDetail resultCount={result} />
-
-        {/*  */}
-        <div className={styles.btn_list}>
-          <ClickBtn text="もう一度引く" url="/gacha" />
-          <ClickBtn text="ホーム画面に戻る" url="/" />
-        </div>
-      </>
-    );
-  } catch (error: any) {
-    if (error.response?.status === 404) {
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
       notFound();
     }
-    throw new Error("API通信中にエラーが発生しました");
+    throw new Error('API通信中にエラーが発生しました');
   }
+
+  const result = [response.scount, response.acount, response.bcount, response.ccount];
+
+  return (
+    <>
+      <Title text="結果" />
+      {/* 結果画面 S A B C を出す */}
+
+      <ResultCard />
+
+      {/* ResultDetail */}
+      <ResultDetail resultCount={result} />
+
+      {/*  */}
+      <div className={styles.btn_list}>
+        <ClickBtn text="もう一度引く" url="/gacha" />
+        <ClickBtn text="ホーム画面に戻る" url="/" />
+      </div>
+    </>
+  );
 }
