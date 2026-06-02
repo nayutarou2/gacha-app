@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.gacha_app_backend.dto.GachaDto;
 import com.example.gacha_app_backend.entity.GachaMenu;
 import com.example.gacha_app_backend.entity.GachaResult;
+import com.example.gacha_app_backend.exception.BadRequestException;
+import com.example.gacha_app_backend.exception.ResourceNotFoundException;
 import com.example.gacha_app_backend.repository.GachaMenuRepository;
 import com.example.gacha_app_backend.repository.GachaResultRepository;
 
@@ -35,7 +37,11 @@ public class GachaService {
 
   // ガチャを指定された回数回すロジック
   @Transactional
-  public String[] pullGacha(int kindNum) {
+  public String[] pullGacha(Integer kindNum) {
+
+    if (kindNum <= 0) {
+      throw new BadRequestException(kindNum);
+    }
 
     String[] result = new String[kindNum];
 
@@ -72,14 +78,14 @@ public class GachaService {
     count[1] = (int) Arrays.stream(result).filter(f -> f.equals("A")).count();
     count[2] = (int) Arrays.stream(result).filter(f -> f.equals("B")).count();
     count[3] = (int) Arrays.stream(result).filter(f -> f.equals("C")).count();
-    
+
     return count;
 
   }
 
   // 保存ロジック
   @Transactional
-  public GachaResult insert(int kindNum,int[] detail) {
+  public GachaResult insert(int kindNum, int[] detail) {
 
     if (gachaMenuRepository.selectById(kindNum) == null) {
       throw new Error("null kinds num");
@@ -107,7 +113,7 @@ public class GachaService {
 
   // ガチャを引いた結果とその詳細結果を返す
   @Transactional
-  public GachaDto responseBody(String[] gachaResult, int[] gachaResultDetail,Long id) {
+  public GachaDto responseBody(String[] gachaResult, int[] gachaResultDetail, Long id) {
 
     GachaDto gachaDto = new GachaDto();
     gachaDto.setGachaResult(gachaResult);
@@ -120,6 +126,9 @@ public class GachaService {
   // 指定したユーザの総回数全取得
   @Transactional
   public Long selectAllGachaResult(Long userId) {
+    if (userId == null) {
+      throw new ResourceNotFoundException("総回数取得結果", userId);
+    }
     return gachaResultRepository.selectAllGachaResult(userId);
   }
 
@@ -131,13 +140,19 @@ public class GachaService {
 
   @Transactional
   public Long selectById(int kindsNum) {
+    if (kindsNum <= 0) {
+      throw new BadRequestException(kindsNum);
+    }
+
     return gachaMenuRepository.selectById(kindsNum);
   }
 
   // 指定したidのガチャのデータを取得
   @Transactional
-  public GachaResult selectByResultId(Long id){
-
+  public GachaResult selectByResultId(Long id) {
+    if (id == null) {
+      throw new ResourceNotFoundException("ガチャデータ取得結果", id);
+    }
     return gachaResultRepository.selectById(id);
   }
 
