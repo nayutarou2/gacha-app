@@ -16,6 +16,7 @@ export const allKinds = async () => {
       // error.response?.data is typed as ApiError
       console.error(error.response?.data.message);
       console.error(error.response?.status);
+      throw error;
     } else {
       throw error;
     }

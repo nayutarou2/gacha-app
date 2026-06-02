@@ -16,6 +16,7 @@ export const getAllResult = async () => {
       // error.response?.data is typed as ApiError
       console.error(error.response?.data.message);
       console.error(error.response?.status);
+      throw error;
     } else {
       throw error;
     }
@@ -31,6 +32,7 @@ export const selectByResultId = async (id: number) => {
     if (axios.isAxiosError<ApiError>(error)) {
       console.error(error.response?.data.message);
       console.error(error.response?.status);
+      throw error;
     } else {
       throw error;
     }
