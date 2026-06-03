@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.gacha_app_backend.custom.CustomUserDetail;
 import com.example.gacha_app_backend.dto.GachaDto;
+import com.example.gacha_app_backend.dto.GachaResultDto;
 import com.example.gacha_app_backend.entity.GachaMenu;
 import com.example.gacha_app_backend.entity.GachaResult;
 import com.example.gacha_app_backend.service.GachaService;
 
-@Controller
 @RestController
 @RequestMapping("/api/gacha")
 public class GachaController {
@@ -42,7 +43,8 @@ public class GachaController {
   @PostMapping("/pull")
   // 何回引くかをユーザから取得
   // 配列でそれぞれの値に対する数を格納 例) [3(S),2(A),4(B),1(C)]
-  public ResponseEntity<GachaDto> pullGacha(@RequestBody Map<String, Integer> request) {
+  public ResponseEntity<GachaDto> pullGacha(@RequestBody Map<String, Integer> request,
+    @AuthenticationPrincipal CustomUserDetail currentUser) {
     // int kindNum = kindNums[0];
     int kindNum = request.get("kindNum");
     // ガチャを回した結果を返す
@@ -50,7 +52,7 @@ public class GachaController {
     // ガチャの詳細結果
     int[] gachaResultDetail = gachaService.resultCount(gachaResult);
     // ガチャの結果を登録する
-    GachaResult result = gachaService.insert(kindNum,gachaResultDetail);
+    GachaResult result = gachaService.insert(kindNum,gachaResultDetail,currentUser);
     // 格納したidを取得
     Long id = result.getId();
 
@@ -62,20 +64,20 @@ public class GachaController {
   // ガチャの総回数を取得する
   @GetMapping("/result")
   // のちのちuserIdを取得する形に変更
-  public ResponseEntity<Long> getAllResult() {
-    Long resposeBody = gachaService.selectAllGachaResult((long) 1);
+  public ResponseEntity<Long> getAllResult(@AuthenticationPrincipal CustomUserDetail currentUser) {
+    Long resposeBody = gachaService.selectAllGachaResult(currentUser.getId());
     return ResponseEntity.ok(resposeBody);
   }
 
   // 指定したidのガチャのデータを取得
   @GetMapping("/result/{id}")
-  public ResponseEntity<GachaResult> viewGachaResult(@PathVariable("id") Long id) {
+  public ResponseEntity<GachaResultDto> viewGachaResult(@PathVariable("id") Long id) {
 
     System.out.println("id" + id);
 
-    GachaResult gachaResult = gachaService.selectByResultId(id);
+    GachaResultDto response = gachaService.selectByResultId(id);
 
-    return ResponseEntity.ok(gachaResult);
+    return ResponseEntity.ok(response);
   }
 
 }
