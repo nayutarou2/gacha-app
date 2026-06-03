@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS gacha_results (
     b_count int,
     c_count int,
     gacha_menu_id bigint NOT NULL REFERENCES gacha_menus(id),
-    user_id bigint NOT NULL,
+    user_id bigint NOT NULL REFERENCES users(id),
     created_at timestamp DEFAULT CURRENT_TIMESTAMP
 );

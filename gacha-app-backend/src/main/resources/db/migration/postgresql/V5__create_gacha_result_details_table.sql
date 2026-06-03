@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS gacha_result_details (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    gacha_result_id BIGINT NOT NULL REFERENCES gacha_results(id) ON DELETE CASCADE,
+    turns INT NOT NULL,
+    rank VARCHAR(2) NOT NULL
+);
