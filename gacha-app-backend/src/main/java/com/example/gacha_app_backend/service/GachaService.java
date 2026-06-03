@@ -115,10 +115,10 @@ public class GachaService {
       Long gachaResultId = gachaResult.getId();
       // gachaResultDetailRepository.insertGachaResultDetail();
       // resultIdを参照して回数分繰り返す
-      for (int i = 1; i <= gachaResult.getGachaMenuId(); i++) {
+      for (int i = 0; i <= gachaResults.length; i++) {
         GachaResultDetail gachaResultDetail = new GachaResultDetail();
         gachaResultDetail.setGachaResultId(gachaResultId);
-        gachaResultDetail.setTurns(i);
+        gachaResultDetail.setTurns(i + 1);
         gachaResultDetail.setRank(gachaResults[i]);
         gachaResultDetailRepository.insertGachaResultDetail(gachaResultDetail);
       }

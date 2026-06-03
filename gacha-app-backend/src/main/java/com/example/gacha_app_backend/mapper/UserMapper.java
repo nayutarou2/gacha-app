@@ -20,7 +20,7 @@ public interface UserMapper {
   Long findByUserId(Long id);
 
   // もう登録してあるか email
-  @Select("SELECT EXISTA(SELECT 1 FROM users WHERE email = #{email})")
+  @Select("SELECT EXISTS(SELECT 1 FROM users WHERE email = #{email})")
   boolean existsByEmail(@Param("email") String email);
 
   // email検索
