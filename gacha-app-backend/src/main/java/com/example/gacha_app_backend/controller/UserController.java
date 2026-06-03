@@ -13,7 +13,7 @@ import com.example.gacha_app_backend.service.AuthService;
 import com.example.gacha_app_backend.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/auth")
 public class UserController {
 
   private final UserService userService;
@@ -32,8 +32,8 @@ public class UserController {
 
   }
 
-  // JWT構成のログインAPI（コントローラー）
-  @PostMapping("/api/login")
+  // JWT構成のログインAPI
+  @PostMapping("/login")
   public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto request) {
 
     LoginResponseDto response = authService.login(request);

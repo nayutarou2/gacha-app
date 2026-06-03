@@ -13,6 +13,7 @@ import com.example.gacha_app_backend.dto.GachaDto;
 import com.example.gacha_app_backend.dto.GachaResultDto;
 import com.example.gacha_app_backend.entity.GachaMenu;
 import com.example.gacha_app_backend.entity.GachaResult;
+import com.example.gacha_app_backend.entity.GachaResultDetail;
 import com.example.gacha_app_backend.exception.BadRequestException;
 import com.example.gacha_app_backend.exception.ResourceNotFoundException;
 import com.example.gacha_app_backend.repository.GachaMenuRepository;
@@ -35,7 +36,7 @@ public class GachaService {
   private final RandomGenerator generator = RandomGeneratorFactory.of("Xoshiro256PlusPlus").create();
 
   public GachaService(GachaMenuRepository gachaMenuRepository, GachaResultRepository gachaResultRepository,
-    GachaResultDetailRepository gachaResultDetailRepository,UserService userService) {
+      GachaResultDetailRepository gachaResultDetailRepository, UserService userService) {
     this.gachaMenuRepository = gachaMenuRepository;
     this.gachaResultRepository = gachaResultRepository;
     this.gachaResultDetailRepository = gachaResultDetailRepository;
@@ -92,7 +93,7 @@ public class GachaService {
 
   // 保存ロジック
   @Transactional
-  public GachaResult insert(int kindNum, int[] detail,CustomUserDetail currentUser) {
+  public GachaResult insert(int kindNum, int[] detail,String[] gachaResults, CustomUserDetail currentUser) {
 
     if (gachaMenuRepository.selectById(kindNum) == null) {
       throw new Error("null kinds num");
@@ -110,6 +111,18 @@ public class GachaService {
 
     try {
       gachaResultRepository.insertResult(gachaResult);
+
+      Long gachaResultId = gachaResult.getId();
+      // gachaResultDetailRepository.insertGachaResultDetail();
+      // resultIdを参照して回数分繰り返す
+      for (int i = 1; i <= gachaResult.getGachaMenuId(); i++) {
+        GachaResultDetail gachaResultDetail = new GachaResultDetail();
+        gachaResultDetail.setGachaResultId(gachaResultId);
+        gachaResultDetail.setTurns(i);
+        gachaResultDetail.setRank(gachaResults[i]);
+        gachaResultDetailRepository.insertGachaResultDetail(gachaResultDetail);
+      }
+
     } catch (Exception e) {
       throw new Error("登録できませんでした");
     }
@@ -161,6 +174,5 @@ public class GachaService {
     }
     return gachaResultDetailRepository.selectByResultId(id);
   }
-
 
 }
