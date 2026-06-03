@@ -1,6 +1,5 @@
 package com.example.gacha_app_backend.service;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.random.RandomGenerator;
@@ -9,12 +8,15 @@ import java.util.random.RandomGeneratorFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.gacha_app_backend.custom.CustomUserDetail;
 import com.example.gacha_app_backend.dto.GachaDto;
+import com.example.gacha_app_backend.dto.GachaResultDto;
 import com.example.gacha_app_backend.entity.GachaMenu;
 import com.example.gacha_app_backend.entity.GachaResult;
 import com.example.gacha_app_backend.exception.BadRequestException;
 import com.example.gacha_app_backend.exception.ResourceNotFoundException;
 import com.example.gacha_app_backend.repository.GachaMenuRepository;
+import com.example.gacha_app_backend.repository.GachaResultDetailRepository;
 import com.example.gacha_app_backend.repository.GachaResultRepository;
 
 @Service
@@ -22,6 +24,8 @@ public class GachaService {
 
   private final GachaMenuRepository gachaMenuRepository;
   private final GachaResultRepository gachaResultRepository;
+  private final GachaResultDetailRepository gachaResultDetailRepository;
+  private final UserService userService;
 
   private final int s = 5;
   private final int a = 15;
@@ -30,9 +34,12 @@ public class GachaService {
 
   private final RandomGenerator generator = RandomGeneratorFactory.of("Xoshiro256PlusPlus").create();
 
-  public GachaService(GachaMenuRepository gachaMenuRepository, GachaResultRepository gachaResultRepository) {
+  public GachaService(GachaMenuRepository gachaMenuRepository, GachaResultRepository gachaResultRepository,
+    GachaResultDetailRepository gachaResultDetailRepository,UserService userService) {
     this.gachaMenuRepository = gachaMenuRepository;
     this.gachaResultRepository = gachaResultRepository;
+    this.gachaResultDetailRepository = gachaResultDetailRepository;
+    this.userService = userService;
   }
 
   // ガチャを指定された回数回すロジック
@@ -85,7 +92,7 @@ public class GachaService {
 
   // 保存ロジック
   @Transactional
-  public GachaResult insert(int kindNum, int[] detail) {
+  public GachaResult insert(int kindNum, int[] detail,CustomUserDetail currentUser) {
 
     if (gachaMenuRepository.selectById(kindNum) == null) {
       throw new Error("null kinds num");
@@ -98,9 +105,8 @@ public class GachaService {
     gachaResult.setACount(detail[1]);
     gachaResult.setBCount(detail[2]);
     gachaResult.setCCount(detail[3]);
-    gachaResult.setCreatedAt(LocalDateTime.now());
     gachaResult.setGachaMenuId(gachaMenuRepository.selectById(kindNum));
-    gachaResult.setUserId((long) 1);
+    gachaResult.setUserId(userService.findByUserId(currentUser.getId()));
 
     try {
       gachaResultRepository.insertResult(gachaResult);
@@ -147,13 +153,14 @@ public class GachaService {
     return gachaMenuRepository.selectById(kindsNum);
   }
 
-  // 指定したidのガチャのデータを取得
+  // 指定したgachaResultIdでガチャの結果を取得
   @Transactional
-  public GachaResult selectByResultId(Long id) {
+  public GachaResultDto selectByResultId(Long id) {
     if (id == null) {
       throw new ResourceNotFoundException("ガチャデータ取得結果", id);
     }
-    return gachaResultRepository.selectById(id);
+    return gachaResultDetailRepository.selectByResultId(id);
   }
+
 
 }
