@@ -3,6 +3,7 @@ package com.example.gacha_app_backend.repository;
 import org.springframework.stereotype.Repository;
 
 import com.example.gacha_app_backend.dto.GachaResultDto;
+import com.example.gacha_app_backend.entity.GachaResultDetail;
 import com.example.gacha_app_backend.mapper.GachaResultDetailMapper;
 
 @Repository
@@ -20,8 +21,8 @@ public class GachaResultDetailRepository {
   }
 
   // 登録
-  public int insert(Long gachaResultId){
-    return gachaResultDetailMapper.insert(gachaResultId);
+  public int insertGachaResultDetail(GachaResultDetail gachaResultDetail){
+    return gachaResultDetailMapper.insert(gachaResultDetail);
   }
 
 

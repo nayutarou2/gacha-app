@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import com.example.gacha_app_backend.dto.GachaResultDto;
+import com.example.gacha_app_backend.entity.GachaResultDetail;
 
 @Mapper
 public interface GachaResultDetailMapper {
@@ -31,6 +32,6 @@ public interface GachaResultDetailMapper {
       )
       """)
   @Options(useGeneratedKeys = true, keyProperty = "id")
-  int insert(Long gachaResultId);
+  int insert(GachaResultDetail gachaResultDetail);
 
 }

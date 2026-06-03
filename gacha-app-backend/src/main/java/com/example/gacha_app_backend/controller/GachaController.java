@@ -52,7 +52,7 @@ public class GachaController {
     // ガチャの詳細結果
     int[] gachaResultDetail = gachaService.resultCount(gachaResult);
     // ガチャの結果を登録する
-    GachaResult result = gachaService.insert(kindNum,gachaResultDetail,currentUser);
+    GachaResult result = gachaService.insert(kindNum,gachaResultDetail,gachaResult,currentUser);
     // 格納したidを取得
     Long id = result.getId();
 
