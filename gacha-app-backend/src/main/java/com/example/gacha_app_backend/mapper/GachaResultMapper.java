@@ -25,7 +25,7 @@ public interface GachaResultMapper {
       #{bCount},
       #{cCount},
       #{gachaMenuId},
-      1
+      #{userId}
       )
       """)
   @Options(useGeneratedKeys = true, keyProperty = "id")
