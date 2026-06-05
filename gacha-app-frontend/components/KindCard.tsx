@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 // propsでそれぞれのコンポーネントから値を受け取る
 interface KindProps {
   response: KindsData[];
+  token:string
 }
 
 export default function KindsCard(props: KindProps) {
@@ -14,7 +15,7 @@ export default function KindsCard(props: KindProps) {
 
   const onClickKindHandler = async (kindNum: number) => {
     try {
-      const response = await pullGacha(kindNum);
+      const response = await pullGacha(kindNum,props.token);
       console.log('レスポンス:', response);
       console.log('result?', JSON.stringify(response.gachaResult));
       localStorage.setItem('gachaResult', JSON.stringify(response.gachaResult));

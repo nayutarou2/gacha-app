@@ -6,9 +6,14 @@ type ApiError = {
   code: number;
 };
 
-export const allKinds = async () => {
+export const allKinds = async (token: string) => {
   try {
-    const response = await api.get('/pull');
+
+    const response = await api.get('/gacha/pull',{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     console.log(response.data);
     return response.data;
   } catch (error) {
