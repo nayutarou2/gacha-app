@@ -37,14 +37,17 @@ public class SecurityConfig {
         // 2. CORS設定（Next.jsからのアクセスを許可。別の場所に逃がしてスッキリさせる）
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
-        // 3. 🌟超重要：セッションは使わない（ステートレス）お守り
+        // 3. セッションは使わない（ステートレス）お守り
         .sessionManagement(session -> session
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+        .headers(headers -> headers
+            .frameOptions(frame -> frame.sameOrigin()))
 
         // 4. どのURLを「誰でも通していいか」の仕分け
         .authorizeHttpRequests(auth -> auth
             // ログイン、ユーザー登録、画像などは誰でもウェルカム
-            .requestMatchers("/api/auth/**", "/images/**", "/error").permitAll()
+            .requestMatchers("/api/auth/**", "/images/**", "/error", "/h2-console/**").permitAll()
             // それ以外の「マイページ」などのAPIは要ログイン
             .anyRequest().authenticated());
 

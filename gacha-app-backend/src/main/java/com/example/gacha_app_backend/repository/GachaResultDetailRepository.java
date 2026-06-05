@@ -1,8 +1,9 @@
 package com.example.gacha_app_backend.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
-import com.example.gacha_app_backend.dto.GachaResultDto;
 import com.example.gacha_app_backend.entity.GachaResultDetail;
 import com.example.gacha_app_backend.mapper.GachaResultDetailMapper;
 
@@ -16,14 +17,13 @@ public class GachaResultDetailRepository {
   }
 
   // 検索
-  public GachaResultDto selectByResultId(Long id) {
-    return gachaResultDetailMapper.selectByResultId(id);
+  public List<GachaResultDetail> selectDetailsByResultId(Long gachaResultId) {
+    return gachaResultDetailMapper.selectDetailsByResultId(gachaResultId);
   }
 
   // 登録
-  public int insertGachaResultDetail(GachaResultDetail gachaResultDetail){
+  public int insertGachaResultDetail(GachaResultDetail gachaResultDetail) {
     return gachaResultDetailMapper.insert(gachaResultDetail);
   }
-
 
 }
