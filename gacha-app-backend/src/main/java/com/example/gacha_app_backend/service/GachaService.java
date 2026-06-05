@@ -93,7 +93,7 @@ public class GachaService {
 
   // 保存ロジック
   @Transactional
-  public GachaResult insert(int kindNum, int[] detail,String[] gachaResults, CustomUserDetail currentUser) {
+  public GachaResult insert(int kindNum, int[] detail, String[] gachaResults, CustomUserDetail currentUser) {
 
     if (gachaMenuRepository.selectById(kindNum) == null) {
       throw new Error("null kinds num");
@@ -172,7 +172,21 @@ public class GachaService {
     if (id == null) {
       throw new ResourceNotFoundException("ガチャデータ取得結果", id);
     }
-    return gachaResultDetailRepository.selectByResultId(id);
+
+    GachaResult result = gachaResultRepository.selectById(id);
+
+    if (result == null) {
+      throw new ResourceNotFoundException("ガチャのデータが存在しません", id);
+    }
+
+    int[] resultCount = { result.getSCount(), result.getACount(), result.getBCount(), result.getCCount() };
+
+    GachaResultDto gachaResultDto = new GachaResultDto();
+    gachaResultDto.setGachaResults(resultCount);
+
+    gachaResultDto.setGachaResultDetails(gachaResultDetailRepository.selectDetailsByResultId(id));
+
+    return gachaResultDto;
   }
 
 }

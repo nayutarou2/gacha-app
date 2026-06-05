@@ -32,8 +32,9 @@ public class GachaController {
   @GetMapping("/pull")
   public ResponseEntity<List<GachaMenu>> allKinds() {
 
+    System.out.println("ガチャの種類取得する処理");
     List<GachaMenu> gachaMenus = gachaService.selectAllKinds();
-
+    System.out.println("ガチャの種類を返す" + gachaMenus);
     return ResponseEntity.ok(gachaMenus);
 
   }
@@ -44,7 +45,8 @@ public class GachaController {
   // 何回引くかをユーザから取得
   // 配列でそれぞれの値に対する数を格納 例) [3(S),2(A),4(B),1(C)]
   public ResponseEntity<GachaDto> pullGacha(@RequestBody Map<String, Integer> request,
-    @AuthenticationPrincipal CustomUserDetail currentUser) {
+      @AuthenticationPrincipal CustomUserDetail currentUser) {
+    System.out.println("ガチャをまわす");
     // int kindNum = kindNums[0];
     int kindNum = request.get("kindNum");
     // ガチャを回した結果を返す
@@ -52,12 +54,12 @@ public class GachaController {
     // ガチャの詳細結果
     int[] gachaResultDetail = gachaService.resultCount(gachaResult);
     // ガチャの結果を登録する
-    GachaResult result = gachaService.insert(kindNum,gachaResultDetail,gachaResult,currentUser);
+    GachaResult result = gachaService.insert(kindNum, gachaResultDetail, gachaResult, currentUser);
     // 格納したidを取得
     Long id = result.getId();
 
     // 二つのものを格納して返す
-    return ResponseEntity.ok(gachaService.responseBody(gachaResult, gachaResultDetail,id));
+    return ResponseEntity.ok(gachaService.responseBody(gachaResult, gachaResultDetail, id));
 
   }
 
@@ -69,13 +71,15 @@ public class GachaController {
     return ResponseEntity.ok(resposeBody);
   }
 
-  // 指定したidのガチャのデータを取得
+  // 指定したidのガチャのデーsrc/main/java/com/example/gacha_app_backend/customタを取得
   @GetMapping("/result/{id}")
   public ResponseEntity<GachaResultDto> viewGachaResult(@PathVariable("id") Long id) {
 
     System.out.println("id" + id);
 
     GachaResultDto response = gachaService.selectByResultId(id);
+
+    System.out.println("ガチャの結果を返す" + response);
 
     return ResponseEntity.ok(response);
   }
