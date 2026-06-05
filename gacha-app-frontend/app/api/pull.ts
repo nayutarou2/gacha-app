@@ -6,11 +6,20 @@ type ApiError = {
   code: number;
 };
 
-export const pullGacha = async (num: number) => {
+export const pullGacha = async (num: number, token: string) => {
+  console.log("ガチャを引く");
+  console.log("token", token);
   try {
-    const response = await api.post('/pull', {
-      kindNum: num,
-    });
+    const response = await api.post('/gacha/pull',
+      {
+        kindNum: num,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     console.log('レスポンスデータ', response.data);
     return response.data;
   } catch (error) {

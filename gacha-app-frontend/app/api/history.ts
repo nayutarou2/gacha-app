@@ -6,9 +6,10 @@ type ApiError = {
   code: number;
 };
 
-export const getAllResult = async () => {
+export const getAllResult = async (token:string) => {
+
   try {
-    const response = await api.get('/result');
+    const response = await api.get('/gacha/result',{headers:{Authorization: `Bearer ${token}`}});
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -23,9 +24,9 @@ export const getAllResult = async () => {
   }
 };
 
-export const selectByResultId = async (id: number) => {
+export const selectByResultId = async (id: number, token: string) => {
   try {
-    const response = await api.get(`/result/${id}`);
+    const response = await api.get(`/gacha/result/${id}`, { headers: { Authorization: `Bearer ${token}` } });
     console.log(response.data);
     return response.data;
   } catch (error) {

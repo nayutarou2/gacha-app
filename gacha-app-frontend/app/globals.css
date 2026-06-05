@@ -48,8 +48,19 @@ a {
   }
 }
 
+h1{
+  text-align: center;
+  font-size: 32px;
+}
+
 h2 {
   text-align: center;
   font-size: 28px;
   margin: 30px auto 20px auto;
+}
+
+label{
+  width: 100%;
+  display: block;  
+  font-size: 18px;
 }

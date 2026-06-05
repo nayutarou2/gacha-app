@@ -1,30 +1,22 @@
 'use client';
 import styles from '@/components/ResultCard.module.css';
-import { useSyncExternalStore } from 'react';
 
-// クライアント側（ブラウザ）でlocalStorageの変更を監視する関数
-const subscribe = () => () => {}; // localStorageはリアルタイム同期しないので空の関数でOK
+type ResultDetailData = {
+  id: number;
+  gachaResultId: number;
+  turns: number;
+  rank: string;
+}
 
-// ブラウザ環境での値の取得方法
-const getSnapshot = () => localStorage.getItem('gachaResult');
+interface Props {
+  result: ResultDetailData[];
+}
 
-// サーバーサイド（SSR）環境での初期値（ハイドレーションエラー防止）
-const getServerSnapshot = () => null;
+export default function ResultCard(props:Props) {
 
-export default function ResultCard() {
-  // useEffectを使わずに、安全にlocalStorageの値をリアクティブに取得
-  const saved = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  let results: string[] = [];
-  if (saved) {
-    try {
-      results = JSON.parse(saved);
-    } catch (e) {
-      console.error(e);
-    }
-  }
 
-  if (results[0] === undefined) {
+  if (props === null) {
     return <div className={styles.undefined}>詳細を表示できません</div>;
   }
 
@@ -32,9 +24,9 @@ export default function ResultCard() {
     <>
       <div className={styles.box}>
         <div className={styles.center}>
-          {results.map((data, index) => (
-            <div key={index} className={styles.item}>
-              <div className={styles.result_card}>{data}</div>
+          {props.result.map((data) => (
+            <div key={data.turns} className={styles.item}>
+              <div className={styles.result_card}>{data.rank}</div>
             </div>
           ))}
         </div>

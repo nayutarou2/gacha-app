@@ -1,15 +1,27 @@
 import ChooseKind from '@/components/ChooseKind';
 import Header from '@/components/Header';
 import { allKinds } from '@/app/api/kinds';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export default async function Gacha() {
-  const respose = await allKinds();
+
+  // cookieを取得
+  const cookieStore = await cookies();
+  // cookieに入っているtokenを取得
+  const token = cookieStore.get('jwt_token')?.value;
+  // tokenがない場合はログインさせる
+  if (!token) {
+    redirect('/auth/login');
+  }
+  const response = await allKinds(token);
+
 
   return (
     // choose kinds
     <>
       <Header />
-      <ChooseKind resposne={respose} />
+      <ChooseKind resposne={response} token={token} />
     </>
   );
 }
