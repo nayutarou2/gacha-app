@@ -1,5 +1,7 @@
 package com.example.gacha_app_backend.dto;
 
+import com.example.gacha_app_backend.validation.ValidPassword;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -15,7 +17,7 @@ public class UserDto {
   @Email(message = "メールアドレスの形式が正しくありません")
   private String email;
   @NotBlank(message = "パスワードは必須です")
-  @Size(min = 8, message = "パスワードは8文字以上で入力してください")
+  @ValidPassword
   private String password;
   @NotBlank(message = "パスワード(確認)は必須です")
   private String passwordConfirm;
