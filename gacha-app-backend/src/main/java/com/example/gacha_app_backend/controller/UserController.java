@@ -36,7 +36,7 @@ public class UserController {
 
   // JWT構成のログインAPI
   @PostMapping("/login")
-  public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto request) {
+  public ResponseEntity<LoginResponseDto> login(@RequestBody @Valid LoginRequestDto request) {
 
     LoginResponseDto response = authService.login(request);
 
