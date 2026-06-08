@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.gacha_app_backend.custom.CustomUserDetail;
 import com.example.gacha_app_backend.dto.GachaDto;
+import com.example.gacha_app_backend.dto.GachaPullRequestDto;
 import com.example.gacha_app_backend.dto.GachaResultDto;
 import com.example.gacha_app_backend.entity.GachaMenu;
 import com.example.gacha_app_backend.entity.GachaResult;
 import com.example.gacha_app_backend.service.GachaService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/gacha")
@@ -44,11 +47,11 @@ public class GachaController {
   @PostMapping("/pull")
   // 何回引くかをユーザから取得
   // 配列でそれぞれの値に対する数を格納 例) [3(S),2(A),4(B),1(C)]
-  public ResponseEntity<GachaDto> pullGacha(@RequestBody Map<String, Integer> request,
+  public ResponseEntity<GachaDto> pullGacha(@RequestBody @Valid GachaPullRequestDto request,
       @AuthenticationPrincipal CustomUserDetail currentUser) {
     System.out.println("ガチャをまわす");
     // int kindNum = kindNums[0];
-    int kindNum = request.get("kindNum");
+    int kindNum = request.getKindNum();
     // ガチャを回した結果を返す
     String[] gachaResult = gachaService.pullGacha(kindNum);
     // ガチャの詳細結果
