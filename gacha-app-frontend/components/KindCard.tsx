@@ -1,28 +1,27 @@
 'use client';
 import styles from '@/components/KindCard.module.css';
 import { KindsData } from '@/app/interface/KindsData';
-import { pullGacha } from '@/app/api/pull';
 import { useRouter } from 'next/navigation';
+import { startTransition } from 'react';
+import { pullGacha } from '@/app/api/pull';
 
 // propsでそれぞれのコンポーネントから値を受け取る
 interface KindProps {
   response: KindsData[];
-  token:string
 }
 
 export default function KindsCard(props: KindProps) {
   const router = useRouter();
 
   const onClickKindHandler = async (kindNum: number) => {
-    try {
-      const response = await pullGacha(kindNum,props.token);
-      console.log('レスポンス:', response);
-      console.log('result?', JSON.stringify(response.gachaResult));
-      localStorage.setItem('gachaResult', JSON.stringify(response.gachaResult));
-      router.push(`/gacha/result/${response.id}`);
-    } catch (error) {
-      console.error('通信失敗 : ', error);
-    }
+    startTransition(async () => {
+      const result = await pullGacha(kindNum);
+      if (result.success && result.id) {
+        router.push(`/gacha/result/${result.id}`);
+      }else{
+        alert(result.error || 'エラーが発生しました');
+      }
+    })
   };
 
   return (
