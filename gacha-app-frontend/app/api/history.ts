@@ -42,15 +42,6 @@ export const selectByResultId = async (id: number) => {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError<ApiError>(error)) {
-      // backendからの401レスポンス
-      if (error.response?.status === 401) {
-        return { success: false, error: 'auth_error' };
-      }
-      return { success: false, error: error.response?.data?.message || 'エラーが発生しました' }
-
-    } else {
-      return { success: false, error: "通信エラーが発生しました" }
-    }
+    throw error
   }
 };
