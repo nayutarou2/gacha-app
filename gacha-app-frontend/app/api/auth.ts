@@ -18,13 +18,24 @@ export type LoginAction = {
   error?: string;
 };
 
+// バックエンドから返ってくるバリデーションエラーJSONの構造を定義
+type BackendValidationError = {
+  status: number;
+  message: string;
+  error: {
+    username?: string[];
+    email?: string[];
+    password?: string[];
+  };
+};
+
 export type RegisterAction = {
   success?: boolean;
   username?: string;
   email?: string;
   error?: string;
   fieldErrors?: {
-    username: string[];
+    username?: string[];
     email?: string[];
     password?: string[];
   };
@@ -73,7 +84,10 @@ export const registerAction = async (prevState: RegisterAction | null, formData:
       success: false,
       username,
       email,
-      error: "パスワードが一致しません"
+      fieldErrors: {
+        password: ["パスワード(確認)が一致しません"],
+        username: []
+      }
     };
   }
 
@@ -83,13 +97,24 @@ export const registerAction = async (prevState: RegisterAction | null, formData:
 
   } catch (error) {
 
-    if (axios.isAxiosError<ApiError>(error)) {
-      const errorMessage = error.response?.data.message || "登録に失敗しました";
-      console.error(error.response?.data.message);
-      console.error(error.response?.status);
-      return { success: false, username: username, email: email, error: errorMessage }
+    if (axios.isAxiosError<BackendValidationError>(error) && error.response) {
+      const backendData = error.response.data;
+
+      return {
+        success: false,
+        username,
+        email,
+        error: backendData.message,
+        fieldErrors: backendData.error
+      };
+
     } else {
-      throw error;
+      return{
+        success:false,
+        username,
+        email,
+        error:"通信エラーが発生しました。"
+      };
     }
   }
   redirect("/auth/login?success=true");
@@ -97,8 +122,8 @@ export const registerAction = async (prevState: RegisterAction | null, formData:
 
 export async function logoutAction() {
   const cookieStore = await cookies();
-  
+
   cookieStore.delete('jwt_token');
-  
+
   redirect('/auth/login');
 }
