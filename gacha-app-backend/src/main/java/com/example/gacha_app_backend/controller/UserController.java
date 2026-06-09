@@ -12,6 +12,8 @@ import com.example.gacha_app_backend.dto.UserDto;
 import com.example.gacha_app_backend.service.AuthService;
 import com.example.gacha_app_backend.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
@@ -26,7 +28,7 @@ public class UserController {
 
   // user登録
   @PostMapping("/register")
-  public ResponseEntity<Integer> createUser(@RequestBody UserDto userDto) {
+  public ResponseEntity<Integer> createUser(@RequestBody @Valid UserDto userDto) {
 
     return ResponseEntity.ok(userService.insertUser(userDto));
 
@@ -34,7 +36,7 @@ public class UserController {
 
   // JWT構成のログインAPI
   @PostMapping("/login")
-  public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto request) {
+  public ResponseEntity<LoginResponseDto> login(@RequestBody @Valid LoginRequestDto request) {
 
     LoginResponseDto response = authService.login(request);
 

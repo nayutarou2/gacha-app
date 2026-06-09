@@ -1,5 +1,6 @@
-import LoginForm from "@/components/LoginForm";
+import { loginAction } from "@/app/api/auth";
 import styles from "./login.module.css";
+import AuthForm from "@/components/AuthForm";
 
 
 type PageProps = {
@@ -12,6 +13,11 @@ export default async function Login({ searchParams }: PageProps) {
 
   const isSuccess = resolvedSearchParams.success === 'true';
 
+  const initialState = {
+    success: false,
+    email: "",
+  };
+
   return (
     <div className={styles.body}>
       <div className={styles.login}>
@@ -23,7 +29,7 @@ export default async function Login({ searchParams }: PageProps) {
         }
         <h1 className={styles.h1} >ガチャアプリ</h1>
       </div>
-      <LoginForm />
+      <AuthForm auth="login" action={loginAction} initialState={initialState} />
     </div>
   );
 }
