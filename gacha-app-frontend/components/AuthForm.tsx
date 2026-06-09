@@ -66,8 +66,8 @@ export default function AuthForm(props: AuthFormProps) {
           <label htmlFor="password">パスワード</label>
           <input type="password" name="password" id="password" className={styles.input_login} required />
           {state.fieldErrors?.password && (
-              <p className={styles.field_error}>{state.fieldErrors.password.join("、")}</p>
-            )}
+            <p className={styles.field_error}>{state.fieldErrors.password.join("、")}</p>
+          )}
         </div>
 
         {!isLogin &&
@@ -77,25 +77,23 @@ export default function AuthForm(props: AuthFormProps) {
           </div>
         }
 
-        {!isLogin &&
-          <div className={styles.button_section}>
-            <button type="submit" className={styles.button} disabled={isPending}>
-              {isPending ? "登録中..." : "登録"}
-            </button>
-          </div>
-        }
         <div className={styles.button_section}>
-          <button type="submit" className={styles.button} disabled={isPending} >{isPending ? "送信中" : "ログイン"}</button>
+          <button type="submit" className={styles.button} disabled={isPending}>
+            {isPending
+              ? (isLogin ? "ログイン中..." : "登録中...")
+              : (isLogin ? "ログイン" : "登録")}
+          </button>
         </div>
 
-        {!isLogin &&
+        {isLogin ? (
+          <div className={styles.link_section}>
+            <Link className={styles.register_link} href={"/auth/register"}>アカウント登録はこちら</Link>
+          </div>
+        ) : (
           <div className={styles.link_section}>
             <Link className={styles.register_link} href={"/auth/login"}>アカウントをお持ちの方はこちら</Link>
           </div>
-        }
-        <div className={styles.link_section}>
-          <Link className={styles.register_link} href={"/auth/register"}>アカウント登録はこちら</Link>
-        </div>
+        )}
       </form>
 
     </>
