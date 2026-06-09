@@ -6,22 +6,14 @@ import { redirect } from 'next/navigation';
 
 export default async function Gacha() {
 
-  // cookieを取得
-  const cookieStore = await cookies();
-  // cookieに入っているtokenを取得
-  const token = cookieStore.get('jwt_token')?.value;
-  // tokenがない場合はログインさせる
-  if (!token) {
-    redirect('/auth/login');
-  }
-  const response = await allKinds(token);
+  const response = await allKinds();
 
 
   return (
     // choose kinds
     <>
       <Header />
-      <ChooseKind resposne={response} token={token} />
+      <ChooseKind resposne={response} />
     </>
   );
 }

@@ -5,7 +5,6 @@ import KindsCard from '@/components/KindCard';
 
 interface KindProps {
   resposne: KindsData[];
-  token: string;
 }
 
 export default function ChooseKind(props: KindProps) {

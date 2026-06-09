@@ -1,15 +1,27 @@
+"use server"
+
 import axios from 'axios';
 import api from './apiClient';
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation';
 
 type ApiError = {
   message: string;
   code: number;
 };
 
-export const allKinds = async (token: string) => {
-  try {
+export const allKinds = async () => {
 
-    const response = await api.get('/gacha/pull',{
+  const cookieStore = await cookies();
+  const token = cookieStore.get('jwt_token')?.value;
+  
+  // tokenがない場合はログインさせる
+  if (!token) {
+    redirect('/auth/login');
+  }
+
+  try {
+    const response = await api.get('/gacha/pull', {
       headers: {
         Authorization: `Bearer ${token}`
       }
