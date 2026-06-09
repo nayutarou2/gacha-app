@@ -22,7 +22,7 @@ export default async function Gacha() {
     // choose kinds
     <>
       <Header />
-      <ChooseKind resposne={response} />
+      <ChooseKind response={response} />
     </>
   );
 }
