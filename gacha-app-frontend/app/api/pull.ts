@@ -1,3 +1,5 @@
+"use server"
+
 import axios from 'axios';
 import api from './apiClient';
 import { cookies } from 'next/headers'
