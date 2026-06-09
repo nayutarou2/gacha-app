@@ -16,7 +16,7 @@ export default function KindsCard(props: KindProps) {
   const onClickKindHandler = async (kindNum: number) => {
     startTransition(async () => {
       const result = await pullGacha(kindNum);
-      if (result.success && result.id) {
+      if (result && result.id) {
         router.push(`/gacha/result/${result.id}`);
       }else{
         alert(result.error || 'エラーが発生しました');
