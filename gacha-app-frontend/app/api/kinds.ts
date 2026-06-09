@@ -14,11 +14,6 @@ export const allKinds = async () => {
 
   const cookieStore = await cookies();
   const token = cookieStore.get('jwt_token')?.value;
-  
-  // tokenがない場合はログインさせる
-  if (!token) {
-    redirect('/auth/login');
-  }
 
   try {
     const response = await api.get('/gacha/pull', {
@@ -30,12 +25,14 @@ export const allKinds = async () => {
     return response.data;
   } catch (error) {
     if (axios.isAxiosError<ApiError>(error)) {
-      // error.response?.data is typed as ApiError
-      console.error(error.response?.data.message);
-      console.error(error.response?.status);
-      throw error;
+      // backendからの401レスポンス
+      if (error.response?.status === 401) {
+        return { success: false, error: 'auth_error' };
+      }
+      return { success: false, error: error.response?.data?.message || 'エラーが発生しました' }
+
     } else {
-      throw error;
+      return { success: false, error: "通信エラーが発生しました" }
     }
   }
 };

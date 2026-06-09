@@ -4,21 +4,10 @@ import ClickBtn from '@/components/ClickBtn';
 import { selectByResultId } from '@/app/api/history';
 import ResultDetail from '@/components/ResultDetail';
 import ResultCard from '@/components/ResultCard';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import axios from 'axios';
-import { cookies } from 'next/headers';
 
 export default async function Result({ params }: { params: Promise<{ id: string }> }) {
-
-  // cookieを取得
-  const cookieStore = await cookies();
-  // cookieに入っているtokenを取得
-  const token = cookieStore.get('jwt_token')?.value;
-
-  // tokenがない場合はログインさせる
-  if (!token) {
-    redirect('/auth/login');
-  }
 
   // 1. ここで await して中身を取り出す（これが重要！）
   const resolvedParams = await params;
@@ -34,7 +23,7 @@ export default async function Result({ params }: { params: Promise<{ id: string 
 
   try {
     // バックエンドに問い合わせる
-    response = await selectByResultId(id,token);
+    response = await selectByResultId(id);
     console.log("ガチャ結果",response);
 
     // 3. もしデータがなければエラー表示（または404ページへリダイレクト）

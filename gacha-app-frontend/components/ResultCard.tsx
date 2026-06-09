@@ -14,8 +14,6 @@ interface Props {
 
 export default function ResultCard(props:Props) {
 
-
-
   if (props === null) {
     return <div className={styles.undefined}>詳細を表示できません</div>;
   }
