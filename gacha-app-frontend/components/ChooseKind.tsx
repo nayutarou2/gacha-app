@@ -4,7 +4,7 @@ import { KindsData } from '@/app/interface/KindsData';
 import KindsCard from '@/components/KindCard';
 
 interface KindProps {
-  resposne: KindsData[];
+  response: KindsData[];
 }
 
 export default function ChooseKind(props: KindProps) {
@@ -16,7 +16,7 @@ export default function ChooseKind(props: KindProps) {
       <Title text="引く回数を選択してください" />
       {/* dbから引く種類を取得 */}
       <div className={styles.box}>
-        <KindsCard response={props.resposne} />
+        <KindsCard response={props.response} />
       </div>
     </>
   );
