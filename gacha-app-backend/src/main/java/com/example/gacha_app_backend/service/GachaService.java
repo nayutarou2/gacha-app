@@ -96,7 +96,7 @@ public class GachaService {
   public GachaResult insert(int kindNum, int[] detail, String[] gachaResults, CustomUserDetail currentUser) {
 
     if (gachaMenuRepository.selectById(kindNum) == null) {
-      throw new Error("null kinds num");
+      throw new BadRequestException(kindNum);
     }
 
     // ガチャの結果を保存
@@ -124,7 +124,7 @@ public class GachaService {
       }
 
     } catch (Exception e) {
-      throw new Error("登録できませんでした");
+      throw new RuntimeException("登録できませんでした");
     }
 
     return gachaResult;
