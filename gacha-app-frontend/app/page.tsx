@@ -1,24 +1,22 @@
 import Header from '@/components/Header';
 import ClickBtn from '@/components/ClickBtn';
 import ResultAllCount from '@/components/ResultAllCount';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import { getAllResult } from './api/history';
+import axios from 'axios';
+import { redirect } from 'next/navigation';
 
 export default async function Home() {
 
-  // cookieを取得
-  const cookieStore = await cookies();
-  // cookieに入っているtokenを取得
-  const token = cookieStore.get('jwt_token')?.value;
+  let response;
 
-  // tokenがない場合はログインさせる
-  if(!token){
-    redirect('/auth/login');
+  try {
+    response = await getAllResult();
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      redirect('/auth/login');
+    }
+    throw error;
   }
-
-  const resposne = await getAllResult(token);
-  console.log("response",resposne);
 
   return (
     <>
@@ -26,7 +24,7 @@ export default async function Home() {
       {/* ガチャページにゴー */}
       <ClickBtn text="ガチャを引く" url="/gacha" />
       {/* リザルト表示 */}
-      <ResultAllCount resultNum={resposne} />
+      <ResultAllCount resultNum={response} />
     </>
   );
 }

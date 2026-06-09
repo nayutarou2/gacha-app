@@ -6,19 +6,8 @@ import ResultDetail from '@/components/ResultDetail';
 import ResultCard from '@/components/ResultCard';
 import { notFound, redirect } from 'next/navigation';
 import axios from 'axios';
-import { cookies } from 'next/headers';
 
 export default async function Result({ params }: { params: Promise<{ id: string }> }) {
-
-  // cookieを取得
-  const cookieStore = await cookies();
-  // cookieに入っているtokenを取得
-  const token = cookieStore.get('jwt_token')?.value;
-
-  // tokenがない場合はログインさせる
-  if (!token) {
-    redirect('/auth/login');
-  }
 
   // 1. ここで await して中身を取り出す（これが重要！）
   const resolvedParams = await params;
@@ -34,25 +23,30 @@ export default async function Result({ params }: { params: Promise<{ id: string 
 
   try {
     // バックエンドに問い合わせる
-    response = await selectByResultId(id,token);
-    console.log("ガチャ結果",response);
+    response = await selectByResultId(id);
+    console.log("ガチャ結果", response);
 
     // 3. もしデータがなければエラー表示（または404ページへリダイレクト）
     if (!response) {
       notFound();
     }
   } catch (error) {
+
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      redirect('/auth/login');
+    }
+
     if (axios.isAxiosError(error) && error.response?.status === 404) {
       notFound();
     }
-    console.log("エラーログ",error);
+    console.log("エラーログ", error);
     throw new Error('API通信中にエラーが発生しました');
   }
 
   const resultCount = response.gachaResults;
-  console.log("resultCount",resultCount);
+  console.log("resultCount", resultCount);
   const resultDetail = response.gachaResultDetails;
-  console.log("resultDetail",resultDetail);
+  console.log("resultDetail", resultDetail);
 
   return (
     <>
@@ -62,7 +56,7 @@ export default async function Result({ params }: { params: Promise<{ id: string 
       <ResultCard result={resultDetail} />
 
       {/* ResultDetail */}
-      <ResultDetail resultCount={resultCount}  />
+      <ResultDetail resultCount={resultCount} />
 
       {/*  */}
       <div className={styles.btn_list}>

@@ -16,10 +16,13 @@ export default function KindsCard(props: KindProps) {
   const onClickKindHandler = async (kindNum: number) => {
     startTransition(async () => {
       const result = await pullGacha(kindNum);
-      if (result.success && result.id) {
+      if (result && result.id) {
         router.push(`/gacha/result/${result.id}`);
+      }else if(result.error === 'auth_error'){
+        alert('セッションの有効期限が切れました。再度ログインしてください');
+        router.push('/auth/login');
       }else{
-        alert(result.error || 'エラーが発生しました');
+        alert(result.error);
       }
     })
   };

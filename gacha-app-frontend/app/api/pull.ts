@@ -1,7 +1,8 @@
+"use server"
+
 import axios from 'axios';
 import api from './apiClient';
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 
 type ApiError = {
   message: string;
@@ -12,11 +13,6 @@ export const pullGacha = async (num: number) => {
 
   const cookieStore = await cookies()
   const token = cookieStore.get('jwt_token')?.value
-
-  if (!token) {
-    redirect('/auth/login')
-  }
-
 
   try {
     const response = await api.post('/gacha/pull',
@@ -29,16 +25,17 @@ export const pullGacha = async (num: number) => {
         },
       }
     );
-    console.log('レスポンスデータ', response.data);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError<ApiError>(error)) {
-      // error.response?.data is typed as ApiError
-      console.error(error.response?.data.message);
-      console.error(error.response?.status);
-      throw error;
+      // backendからの401レスポンス
+      if (error.response?.status === 401) {
+        return { success: false, error: 'auth_error' };
+      }
+      return { success: false, error: error.response?.data?.message || 'エラーが発生しました' }
+
     } else {
-      throw error;
+      return { success: false, error: "通信エラーが発生しました" }
     }
   }
 };
