@@ -19,16 +19,7 @@ export const getAllResult = async () => {
     const response = await api.get('/gacha/result', { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError<ApiError>(error)) {
-      // backendからの401レスポンス
-      if (error.response?.status === 401) {
-        return { success: false, error: 'auth_error' };
-      }
-      return { success: false, error: error.response?.data?.message || 'エラーが発生しました' }
-
-    } else {
-      return { success: false, error: "通信エラーが発生しました" }
-    }
+    throw error;
   }
 };
 
