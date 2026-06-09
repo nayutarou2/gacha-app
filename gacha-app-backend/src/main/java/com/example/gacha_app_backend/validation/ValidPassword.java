@@ -13,6 +13,7 @@ import jakarta.validation.Payload;
 @Constraint(validatedBy = PasswordConstraintValidator.class)
 @Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
+// エラーメッセージを作るために必要な message , groups , payload を作成
 public @interface ValidPassword {
   String message() default "不適切なパスワードです";
 
