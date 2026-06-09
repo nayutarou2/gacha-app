@@ -1,14 +1,23 @@
 import axios from 'axios';
 import api from './apiClient';
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 type ApiError = {
   message: string;
   code: number;
 };
 
-export const pullGacha = async (num: number, token: string) => {
-  console.log("ガチャを引く");
-  console.log("token", token);
+export const pullGacha = async (num: number) => {
+
+  const cookieStore = await cookies()
+  const token = cookieStore.get('jwt_token')?.value
+
+  if (!token) {
+    redirect('/auth/login')
+  }
+
+
   try {
     const response = await api.post('/gacha/pull',
       {
