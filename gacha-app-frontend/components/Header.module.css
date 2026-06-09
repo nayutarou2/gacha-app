@@ -1,5 +1,14 @@
 .header {
-  width: 100vw;
-  text-align: center;
-  margin: 80px auto 10px auto;
+  width: 90%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.auth{
+  display: flex;
+  font-size: 20px;
+  column-gap: 30px;
 }

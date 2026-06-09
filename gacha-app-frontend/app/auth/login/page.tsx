@@ -21,7 +21,7 @@ export default async function Login({ searchParams }: PageProps) {
             ユーザー登録が完了しました
           </div>
         }
-        <h1 className={styles.h1} >ログイン</h1>
+        <h1 className={styles.h1} >ガチャアプリ</h1>
       </div>
       <LoginForm />
     </div>
