@@ -1,7 +1,6 @@
 package com.example.gacha_app_backend.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -70,11 +69,11 @@ public class GachaController {
   @GetMapping("/result")
   // のちのちuserIdを取得する形に変更
   public ResponseEntity<Long> getAllResult(@AuthenticationPrincipal CustomUserDetail currentUser) {
-    Long resposeBody = gachaService.selectAllGachaResult(currentUser.getId());
-    return ResponseEntity.ok(resposeBody);
+    Long responseBody = gachaService.selectAllGachaResult(currentUser.getId());
+    return ResponseEntity.ok(responseBody);
   }
 
-  // 指定したidのガチャのデーsrc/main/java/com/example/gacha_app_backend/customタを取得
+  // 指定したidのガチャのデータを取得
   @GetMapping("/result/{id}")
   public ResponseEntity<GachaResultDto> viewGachaResult(@PathVariable("id") Long id) {
 
