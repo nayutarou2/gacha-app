@@ -63,7 +63,7 @@ gacha-app-frontend/
 │ │ ├── kinds.ts # KindsData.tsから移動・改名
 │ │ └── result.ts # ResultData.tsから移動・改名
 │ │
-│ └── middleware.ts # 🌟 proxy.tsから名前を変更してここに配置
+│ └── proxy.ts 
 │
 ├── .gitignore
 ├── .prettierrc
