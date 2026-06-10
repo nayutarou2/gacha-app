@@ -6,7 +6,6 @@ import axios from 'axios';
 import { redirect } from 'next/navigation';
 
 export default async function Home() {
-
   let response;
 
   try {

@@ -1,8 +1,8 @@
-"use server"
+'use server';
 
 import axios from 'axios';
 import api from './apiClient';
-import { cookies } from 'next/headers'
+import { cookies } from 'next/headers';
 
 type ApiError = {
   message: string;
@@ -10,12 +10,12 @@ type ApiError = {
 };
 
 export const pullGacha = async (num: number) => {
-
-  const cookieStore = await cookies()
-  const token = cookieStore.get('jwt_token')?.value
+  const cookieStore = await cookies();
+  const token = cookieStore.get('jwt_token')?.value;
 
   try {
-    const response = await api.post('/gacha/pull',
+    const response = await api.post(
+      '/gacha/pull',
       {
         kindNum: num,
       },
@@ -23,7 +23,7 @@ export const pullGacha = async (num: number) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -32,10 +32,9 @@ export const pullGacha = async (num: number) => {
       if (error.response?.status === 401) {
         return { success: false, error: 'auth_error' };
       }
-      return { success: false, error: error.response?.data?.message || 'エラーが発生しました' }
-
+      return { success: false, error: error.response?.data?.message || 'エラーが発生しました' };
     } else {
-      return { success: false, error: "通信エラーが発生しました" }
+      return { success: false, error: '通信エラーが発生しました' };
     }
   }
 };

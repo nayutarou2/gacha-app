@@ -1,13 +1,12 @@
-import AuthForm from "@/src/components/auth/AuthForm";
-import styles from "./register.module.css";
-import { registerAction } from "@/src/lib/actions/authActions";
+import AuthForm from '@/src/components/auth/AuthForm';
+import styles from './register.module.css';
+import { registerAction } from '@/src/lib/actions/authActions';
 
 export default function Register() {
-
   const initialState = {
     success: false,
-    username: "",
-    email: "",
+    username: '',
+    email: '',
   };
 
   return (

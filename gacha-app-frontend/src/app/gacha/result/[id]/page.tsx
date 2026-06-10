@@ -8,7 +8,6 @@ import { notFound, redirect } from 'next/navigation';
 import axios from 'axios';
 
 export default async function Result({ params }: { params: Promise<{ id: string }> }) {
-
   // 1. ここで await して中身を取り出す（これが重要！）
   const resolvedParams = await params;
   const resultId = resolvedParams.id;
@@ -30,7 +29,6 @@ export default async function Result({ params }: { params: Promise<{ id: string 
       notFound();
     }
   } catch (error) {
-
     if (axios.isAxiosError(error) && error.response?.status === 401) {
       redirect('/auth/login');
     }

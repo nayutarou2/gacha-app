@@ -5,8 +5,7 @@ import { redirect } from 'next/navigation';
 import axios from 'axios';
 
 export default async function Gacha() {
-
-  let response
+  let response;
 
   try {
     response = await allKinds();
@@ -16,7 +15,6 @@ export default async function Gacha() {
     }
     throw error;
   }
-
 
   return (
     // choose kinds

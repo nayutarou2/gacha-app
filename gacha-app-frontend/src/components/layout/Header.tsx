@@ -9,7 +9,7 @@ export default function Header() {
         <h1>
           <Link href={'/'}>ガチャApp</Link>
         </h1>
-        <div className={styles.auth} >
+        <div className={styles.auth}>
           <div>ようこそ</div>
           <Logout />
         </div>

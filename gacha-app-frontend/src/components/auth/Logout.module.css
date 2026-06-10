@@ -10,7 +10,7 @@
   background: none;
 }
 
-.form button:hover{
+.form button:hover {
   cursor: pointer;
   opacity: 0.6;
 }
