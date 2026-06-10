@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend;
+package com.example.gacha;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
