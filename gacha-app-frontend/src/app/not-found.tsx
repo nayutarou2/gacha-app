@@ -1,4 +1,4 @@
-import ClickBtn from '@/components/ClickBtn';
+import ClickBtn from '@/src/components/ui/ClickBtn';
 
 export default function NotFound() {
   return (

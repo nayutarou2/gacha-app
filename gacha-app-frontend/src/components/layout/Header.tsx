@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './Header.module.css';
-import Logout from './Logout';
+import Logout from '@/src/components/auth/Logout';
 
 export default function Header() {
   return (

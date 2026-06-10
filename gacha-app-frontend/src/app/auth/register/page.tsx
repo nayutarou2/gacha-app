@@ -1,6 +1,6 @@
-import AuthForm from "@/components/AuthForm";
+import AuthForm from "@/src/components/auth/AuthForm";
 import styles from "./register.module.css";
-import { registerAction } from "@/app/api/auth";
+import { registerAction } from "@/src/lib/actions/authActions";
 
 export default function Register() {
 

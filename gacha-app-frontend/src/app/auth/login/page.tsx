@@ -1,6 +1,6 @@
-import { loginAction } from "@/app/api/auth";
+import { loginAction } from "@/src/lib/actions/authActions";
 import styles from "./login.module.css";
-import AuthForm from "@/components/AuthForm";
+import AuthForm from "@/src/components/auth/AuthForm";
 
 
 type PageProps = {

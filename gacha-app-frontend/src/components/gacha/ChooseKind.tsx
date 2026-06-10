@@ -1,7 +1,7 @@
-import Title from '@/components/Title';
+import Title from '@/src/components/ui/Title';
 import styles from '@/components/ChooseKind.module.css';
-import { KindsData } from '@/app/interface/KindsData';
-import KindsCard from '@/components/KindCard';
+import { KindsData } from '@/src/types/kinds';
+import KindsCard from '@/src/components/gacha/KindCard';
 
 interface KindProps {
   response: KindsData[];

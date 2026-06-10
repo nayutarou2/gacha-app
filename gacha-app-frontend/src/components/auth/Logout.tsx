@@ -1,4 +1,4 @@
-import { logoutAction } from "@/app/api/auth";
+import { logoutAction } from "@/src/lib/actions/authActions";
 import styles from "./Logout.module.css";
 
 

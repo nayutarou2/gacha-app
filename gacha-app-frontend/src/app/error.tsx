@@ -1,7 +1,7 @@
 // app/error.tsx
 'use client';
 
-import ClickBtn from '@/components/ClickBtn';
+import ClickBtn from '@/src/components/ui/ClickBtn';
 import { useEffect } from 'react';
 
 export default function Error({

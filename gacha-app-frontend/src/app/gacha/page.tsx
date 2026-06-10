@@ -1,6 +1,6 @@
-import ChooseKind from '@/components/ChooseKind';
-import Header from '@/components/Header';
-import { allKinds } from '@/app/api/kinds';
+import ChooseKind from '@/src/components/gacha/ChooseKind';
+import Header from '@/src/components/layout/Header';
+import { allKinds } from '@/src/lib/api/kinds';
 import { redirect } from 'next/navigation';
 import axios from 'axios';
 

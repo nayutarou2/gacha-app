@@ -1,9 +1,9 @@
 'use client';
 import styles from '@/components/KindCard.module.css';
-import { KindsData } from '@/app/interface/KindsData';
+import { KindsData } from '@/src/types/kinds';
 import { useRouter } from 'next/navigation';
 import { startTransition } from 'react';
-import { pullGacha } from '@/app/api/pull';
+import { pullGacha } from '@/src/lib/api/pull';
 
 // propsでそれぞれのコンポーネントから値を受け取る
 interface KindProps {

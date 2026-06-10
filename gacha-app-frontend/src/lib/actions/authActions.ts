@@ -1,8 +1,8 @@
 "use server"
 
 import axios from 'axios';
-import api from './apiClient';
-import { createSession } from './actions';
+import api from '@/src/lib/api/apiClient';
+import { createSession } from './sessionActions';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 

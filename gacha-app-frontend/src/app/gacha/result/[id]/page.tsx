@@ -1,9 +1,9 @@
 import styles from './result.module.css';
-import Title from '@/components/Title';
-import ClickBtn from '@/components/ClickBtn';
-import { selectByResultId } from '@/app/api/history';
-import ResultDetail from '@/components/ResultDetail';
-import ResultCard from '@/components/ResultCard';
+import Title from '@/src/components/ui/Title';
+import ClickBtn from '@/src/components/ui/ClickBtn';
+import { selectByResultId } from '@/src/lib/api/history';
+import ResultDetail from '@/src/components/ResultDetail';
+import ResultCard from '@/src/components/ResultCard';
 import { notFound, redirect } from 'next/navigation';
 import axios from 'axios';
 

@@ -1,7 +1,7 @@
-import Header from '@/components/Header';
-import ClickBtn from '@/components/ClickBtn';
-import ResultAllCount from '@/components/ResultAllCount';
-import { getAllResult } from './api/history';
+import Header from '@/src/components/layout/Header';
+import ClickBtn from '@/src/components/ui/ClickBtn';
+import ResultAllCount from '@/src/components/gacha/ResultAllCount';
+import { getAllResult } from '@/src/lib/api/history';
 import axios from 'axios';
 import { redirect } from 'next/navigation';
 
