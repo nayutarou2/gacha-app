@@ -36,9 +36,9 @@ gacha-app/
 ```
 ## 🚀 🚀 開発環境の構築・起動手順
 
-最初にリポジトリをクローンしてください。
+最初にリポジトリをクローンしてください。(httpsとsshどちらでも大丈夫です。)
 ```
-git clone [https://github.com/nayutarou2/gacha-app.git$](https://github.com/nayutarou2/gacha-app.git$)
+git clone https://github.com/nayutarou2/gacha-app.git
 ```
 プロジェクトのディレクトリに移動します。
 ```
