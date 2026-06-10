@@ -3,11 +3,6 @@
 import api from './apiClient';
 import { cookies } from 'next/headers'
 
-type ApiError = {
-  message: string;
-  code: number;
-};
-
 export const allKinds = async () => {
 
   const cookieStore = await cookies();

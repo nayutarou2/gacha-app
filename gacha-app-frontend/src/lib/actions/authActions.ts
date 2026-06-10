@@ -6,11 +6,6 @@ import { createSession } from './sessionActions';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 
-type ApiError = {
-  message: string;
-  code: number;
-};
-
 // 成功か失敗かを返すprevStateに
 export type LoginAction = {
   success?: boolean;
@@ -90,7 +85,7 @@ export const registerAction = async (prevState: RegisterAction | null, formData:
 
   try {
 
-    const response = await api.post("/auth/register", { username, email, password, passwordConfirm })
+    await api.post("/auth/register", { username, email, password, passwordConfirm })
 
   } catch (error) {
 

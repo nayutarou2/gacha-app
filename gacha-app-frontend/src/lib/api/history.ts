@@ -1,14 +1,7 @@
 "use server"
 
-import axios from 'axios';
 import api from './apiClient';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-
-type ApiError = {
-  message: string;
-  code: number;
-};
 
 export const getAllResult = async () => {
 
@@ -32,6 +25,6 @@ export const selectByResultId = async (id: number) => {
     const response = await api.get(`/gacha/result/${id}`, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
-    throw error
+    throw error;
   }
 };
