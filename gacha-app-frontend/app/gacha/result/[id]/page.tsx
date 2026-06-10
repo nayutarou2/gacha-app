@@ -24,7 +24,6 @@ export default async function Result({ params }: { params: Promise<{ id: string 
   try {
     // バックエンドに問い合わせる
     response = await selectByResultId(id);
-    console.log("ガチャ結果", response);
 
     // 3. もしデータがなければエラー表示（または404ページへリダイレクト）
     if (!response) {
@@ -39,14 +38,11 @@ export default async function Result({ params }: { params: Promise<{ id: string 
     if (axios.isAxiosError(error) && error.response?.status === 404) {
       notFound();
     }
-    console.log("エラーログ", error);
     throw new Error('API通信中にエラーが発生しました');
   }
 
   const resultCount = response.gachaResults;
-  console.log("resultCount", resultCount);
   const resultDetail = response.gachaResultDetails;
-  console.log("resultDetail", resultDetail);
 
   return (
     <>

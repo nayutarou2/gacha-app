@@ -7,8 +7,6 @@ interface ResultCountList {
 export default function ResultDetail(props: ResultCountList) {
   const resultsList = props.resultCount || [];
 
-  console.log('resultList', resultsList);
-
   // reduceを使い、配列の要素を左から右へ順番に処理する
   const totalCount = resultsList.reduce((acc, curr) => acc + curr, 0);
 

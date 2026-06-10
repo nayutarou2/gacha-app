@@ -12,7 +12,6 @@ const api: AxiosInstance = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  console.log('通信を行う :', config.url);
   return config;
 });
 
