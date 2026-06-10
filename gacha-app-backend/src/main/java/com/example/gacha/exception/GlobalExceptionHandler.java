@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.exception;
+package com.example.gacha.exception;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import com.example.gacha_app_backend.dto.ErrorResponseDto;
+import com.example.gacha.dto.ErrorResponseDto;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.exception;
+package com.example.gacha.exception;
 
 
 public class ResourceNotFoundException extends RuntimeException {

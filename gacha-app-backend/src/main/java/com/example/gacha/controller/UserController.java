@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.controller;
+package com.example.gacha.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.gacha_app_backend.dto.LoginRequestDto;
-import com.example.gacha_app_backend.dto.LoginResponseDto;
-import com.example.gacha_app_backend.dto.UserDto;
-import com.example.gacha_app_backend.service.AuthService;
-import com.example.gacha_app_backend.service.UserService;
+import com.example.gacha.dto.LoginRequestDto;
+import com.example.gacha.dto.LoginResponseDto;
+import com.example.gacha.dto.UserDto;
+import com.example.gacha.service.AuthService;
+import com.example.gacha.service.UserService;
 
 import jakarta.validation.Valid;
 

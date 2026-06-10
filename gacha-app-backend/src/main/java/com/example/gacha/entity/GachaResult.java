@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.entity;
+package com.example.gacha.entity;
 
 import java.time.LocalDateTime;
 

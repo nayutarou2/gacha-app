@@ -1,6 +1,6 @@
-package com.example.gacha_app_backend.dto;
+package com.example.gacha.dto;
 
-import com.example.gacha_app_backend.validation.ValidPassword;
+import com.example.gacha.validation.ValidPassword;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

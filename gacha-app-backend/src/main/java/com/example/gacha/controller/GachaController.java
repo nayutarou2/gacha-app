@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.gacha.custom.CustomUserDetail;
 import com.example.gacha.dto.GachaDto;
 import com.example.gacha.dto.GachaPullRequestDto;
 import com.example.gacha.dto.GachaResultDto;
 import com.example.gacha.entity.GachaMenu;
 import com.example.gacha.entity.GachaResult;
+import com.example.gacha.security.CustomUserDetail;
 import com.example.gacha.service.GachaService;
 
 import jakarta.validation.Valid;

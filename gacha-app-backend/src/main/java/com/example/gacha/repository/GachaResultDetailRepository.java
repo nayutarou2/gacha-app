@@ -1,11 +1,11 @@
-package com.example.gacha_app_backend.repository;
+package com.example.gacha.repository;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.gacha_app_backend.entity.GachaResultDetail;
-import com.example.gacha_app_backend.mapper.GachaResultDetailMapper;
+import com.example.gacha.entity.GachaResultDetail;
+import com.example.gacha.mapper.GachaResultDetailMapper;
 
 @Repository
 public class GachaResultDetailRepository {

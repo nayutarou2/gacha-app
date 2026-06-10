@@ -1,16 +1,16 @@
-package com.example.gacha_app_backend.service;
+package com.example.gacha.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import com.example.gacha_app_backend.dto.LoginRequestDto;
-import com.example.gacha_app_backend.dto.LoginResponseDto;
-import com.example.gacha_app_backend.entity.User;
-import com.example.gacha_app_backend.exception.AuthenticationException;
-import com.example.gacha_app_backend.repository.UserRepository;
-import com.example.gacha_app_backend.security.JwtTokenProvider;
+import com.example.gacha.dto.LoginRequestDto;
+import com.example.gacha.dto.LoginResponseDto;
+import com.example.gacha.entity.User;
+import com.example.gacha.exception.AuthenticationException;
+import com.example.gacha.repository.UserRepository;
+import com.example.gacha.security.JwtTokenProvider;
 
 @Service
 public class AuthService {

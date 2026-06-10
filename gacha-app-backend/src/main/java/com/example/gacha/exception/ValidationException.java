@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.exception;
+package com.example.gacha.exception;
 
 import java.util.List;
 import java.util.Map;

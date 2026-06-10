@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.security;
+package com.example.gacha.security;
 
 import java.io.IOException;
 
@@ -11,8 +11,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import com.example.gacha_app_backend.custom.CustomUserDetailsService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.dto;
+package com.example.gacha.dto;
 
 import java.util.List;
 import java.util.Map;

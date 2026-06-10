@@ -1,11 +1,11 @@
-package com.example.gacha_app_backend.mapper;
+package com.example.gacha.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import com.example.gacha_app_backend.entity.GachaMenu;
+import com.example.gacha.entity.GachaMenu;
 
 @Mapper
 public interface GachaMenuMapper {

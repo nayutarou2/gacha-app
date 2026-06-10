@@ -1,12 +1,12 @@
-package com.example.gacha_app_backend.custom;
+package com.example.gacha.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.gacha_app_backend.entity.User;
-import com.example.gacha_app_backend.repository.UserRepository;
+import com.example.gacha.entity.User;
+import com.example.gacha.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

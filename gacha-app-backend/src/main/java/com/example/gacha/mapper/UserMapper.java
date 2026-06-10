@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.mapper;
+package com.example.gacha.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.example.gacha_app_backend.entity.User;
+import com.example.gacha.entity.User;
 
 @Mapper
 public interface UserMapper {

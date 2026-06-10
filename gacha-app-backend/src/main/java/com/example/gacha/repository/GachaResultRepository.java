@@ -1,9 +1,9 @@
-package com.example.gacha_app_backend.repository;
+package com.example.gacha.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.gacha_app_backend.entity.GachaResult;
-import com.example.gacha_app_backend.mapper.GachaResultMapper;
+import com.example.gacha.entity.GachaResult;
+import com.example.gacha.mapper.GachaResultMapper;
 
 @Repository
 public class GachaResultRepository {

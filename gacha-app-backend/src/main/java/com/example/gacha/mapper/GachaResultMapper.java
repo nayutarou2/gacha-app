@@ -1,11 +1,11 @@
-package com.example.gacha_app_backend.mapper;
+package com.example.gacha.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
-import com.example.gacha_app_backend.entity.GachaResult;
+import com.example.gacha.entity.GachaResult;
 
 @Mapper
 public interface GachaResultMapper {

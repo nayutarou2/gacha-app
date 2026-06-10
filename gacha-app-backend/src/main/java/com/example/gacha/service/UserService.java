@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.service;
+package com.example.gacha.service;
 
 import java.util.List;
 import java.util.Map;
@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.gacha_app_backend.dto.UserDto;
-import com.example.gacha_app_backend.entity.User;
-import com.example.gacha_app_backend.exception.ValidationException;
-import com.example.gacha_app_backend.repository.UserRepository;
+import com.example.gacha.dto.UserDto;
+import com.example.gacha.entity.User;
+import com.example.gacha.exception.ValidationException;
+import com.example.gacha.repository.UserRepository;
 
 @Service
 public class UserService {

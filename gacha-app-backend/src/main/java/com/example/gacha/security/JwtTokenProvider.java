@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.security;
+package com.example.gacha.security;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;

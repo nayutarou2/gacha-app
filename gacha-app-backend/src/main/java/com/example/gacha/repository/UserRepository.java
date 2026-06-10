@@ -1,9 +1,9 @@
-package com.example.gacha_app_backend.repository;
+package com.example.gacha.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.gacha_app_backend.entity.User;
-import com.example.gacha_app_backend.mapper.UserMapper;
+import com.example.gacha.entity.User;
+import com.example.gacha.mapper.UserMapper;
 
 @Repository
 public class UserRepository {

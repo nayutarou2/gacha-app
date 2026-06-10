@@ -1,9 +1,8 @@
-package com.example.gacha_app_backend.dto;
+package com.example.gacha.dto;
 
 import java.util.List;
 
-// import com.example.gacha_app_backend.entity.GachaResult;
-import com.example.gacha_app_backend.entity.GachaResultDetail;
+import com.example.gacha.entity.GachaResultDetail;
 
 import lombok.Data;
 
