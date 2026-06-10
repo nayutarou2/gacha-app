@@ -1,4 +1,4 @@
-import styles from '@/components/ResultAllCount.module.css';
+import styles from '@/src/components/gacha/ResultAllCount.module.css';
 
 interface Props {
   resultNum: number;

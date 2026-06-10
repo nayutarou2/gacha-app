@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './ClicBtn.module.css';
+import styles from './ClickBtn.module.css';
 import { useRouter } from 'next/navigation';
 
 interface TextProps {
