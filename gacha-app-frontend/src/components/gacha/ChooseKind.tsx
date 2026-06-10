@@ -1,5 +1,5 @@
 import Title from '@/src/components/ui/Title';
-import styles from '@/components/ChooseKind.module.css';
+import styles from '@/src/components/gacha/ChooseKind.module.css';
 import { KindsData } from '@/src/types/kinds';
 import KindsCard from '@/src/components/gacha/KindCard';
 
