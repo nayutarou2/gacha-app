@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.validation;
+package com.example.gacha.validation;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.custom;
+package com.example.gacha.security;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.gacha_app_backend.entity.User;
+import com.example.gacha.entity.User;
 
 public class CustomUserDetail implements UserDetails {
 

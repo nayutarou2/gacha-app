@@ -1,4 +1,4 @@
-package com.example.gacha_app_backend.service;
+package com.example.gacha.service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,17 +8,17 @@ import java.util.random.RandomGeneratorFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.gacha_app_backend.custom.CustomUserDetail;
-import com.example.gacha_app_backend.dto.GachaDto;
-import com.example.gacha_app_backend.dto.GachaResultDto;
-import com.example.gacha_app_backend.entity.GachaMenu;
-import com.example.gacha_app_backend.entity.GachaResult;
-import com.example.gacha_app_backend.entity.GachaResultDetail;
-import com.example.gacha_app_backend.exception.BadRequestException;
-import com.example.gacha_app_backend.exception.ResourceNotFoundException;
-import com.example.gacha_app_backend.repository.GachaMenuRepository;
-import com.example.gacha_app_backend.repository.GachaResultDetailRepository;
-import com.example.gacha_app_backend.repository.GachaResultRepository;
+import com.example.gacha.dto.GachaDto;
+import com.example.gacha.dto.GachaResultDto;
+import com.example.gacha.entity.GachaMenu;
+import com.example.gacha.entity.GachaResult;
+import com.example.gacha.entity.GachaResultDetail;
+import com.example.gacha.exception.BadRequestException;
+import com.example.gacha.exception.ResourceNotFoundException;
+import com.example.gacha.repository.GachaMenuRepository;
+import com.example.gacha.repository.GachaResultDetailRepository;
+import com.example.gacha.repository.GachaResultRepository;
+import com.example.gacha.security.CustomUserDetail;
 
 @Service
 public class GachaService {
