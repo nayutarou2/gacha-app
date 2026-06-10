@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/app/auth/login/login.module.css';
+import styles from '@/src/app/auth/login/login.module.css';
 import Link from 'next/link';
 import { useActionState } from 'react';
 

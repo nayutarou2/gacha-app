@@ -1,5 +1,5 @@
 'use client';
-import styles from '@/components/ResultCard.module.css';
+import styles from '@/src/components/gacha/ResultCard.module.css';
 
 type ResultDetailData = {
   id: number;

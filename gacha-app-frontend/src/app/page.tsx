@@ -11,7 +11,7 @@ export default async function Home() {
   try {
     response = await getAllResult();
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response?.status === 401) {
+    if (axios.isAxiosError(error) && (error.response?.status === 401 || error.response?.status === 403)) {
       redirect('/auth/login');
     }
     throw error;

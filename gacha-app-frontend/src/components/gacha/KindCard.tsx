@@ -1,5 +1,5 @@
 'use client';
-import styles from '@/components/KindCard.module.css';
+import styles from '@/src/components/gacha/KindCard.module.css';
 import { KindsData } from '@/src/types/kinds';
 import { useRouter } from 'next/navigation';
 import { startTransition } from 'react';

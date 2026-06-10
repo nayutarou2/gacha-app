@@ -1,4 +1,4 @@
-import styles from '@/components/ResultDetail.module.css';
+import styles from '@/src/components/gacha/ResultDetail.module.css';
 
 interface ResultCountList {
   resultCount: number[] | undefined;
