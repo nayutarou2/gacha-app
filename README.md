@@ -37,8 +37,13 @@ gacha-app/
 ## 🚀 🚀 開発環境の構築・起動手順
 
 最初にリポジトリをクローンしてください。
-$git clone [https://github.com/nayutarou2/gacha-app.git$](https://github.com/nayutarou2/gacha-app.git$) cd gacha-app
-
+```
+git clone [https://github.com/nayutarou2/gacha-app.git$](https://github.com/nayutarou2/gacha-app.git$)
+```
+プロジェクトのディレクトリに移動します。
+```
+cd gacha-app
+```
 ### 1. バックエンドの起動 (`gacha-app-backend`) 
 #### 前提条件  
 - Java 17 以上がインストールされていること
@@ -68,8 +73,8 @@ gradlew.bat bootRun
 ### 2. フロントエンドの起動 (`gacha-app-frontend`)
 
 #### 前提条件
-* Node.js(v20.9.0以上) がインストールされていること
-* `pnpm` がインストールされていること (`npm i -g pnpm`)
+- Node.js(v20.9.0以上) がインストールされていること
+- `pnpm` がインストールされていること (`npm i -g pnpm`)
 
 #### 起動手順
 1. フロントエンドのディレクトリに移動します。
