@@ -1,0 +1,16 @@
+.form {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.form button {
+  font-size: 20px;
+  border: none;
+  background: none;
+}
+
+.form button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
