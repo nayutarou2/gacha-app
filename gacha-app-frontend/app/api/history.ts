@@ -30,7 +30,6 @@ export const selectByResultId = async (id: number) => {
 
   try {
     const response = await api.get(`/gacha/result/${id}`, { headers: { Authorization: `Bearer ${token}` } });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error

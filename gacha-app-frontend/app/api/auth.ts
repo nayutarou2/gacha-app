@@ -49,12 +49,9 @@ export const loginAction = async (prevState: LoginAction | null, formData: FormD
   const password = formData.get("password") as string;
 
   try {
-    console.log("ログイン処理開始", email + "\n" + password);
     const response = await api.post("/auth/login", { email, password });
-    console.log("ログインレスポンス:", response.data);
     await createSession(response.data.token);
   } catch (error: unknown) {
-    console.error("ログインエラー:", error);
     // エラーが起きたら、画面に表示するための文言を返す
     if (axios.isAxiosError(error)) {
       return {
