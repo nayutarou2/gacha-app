@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // 1. クッキーからトークンを取得
   const token = request.cookies.get('jwt_token')?.value
 
